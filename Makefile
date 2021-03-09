@@ -57,16 +57,16 @@ deps: $(BUF)
 
 .PHONY: local
 local: $(BUF)
-	buf check lint --input ./proto
-	buf check breaking --against-input '.git#branch=master'
+	buf check lint ./proto
+	buf check breaking --against '.git#branch=master'
 
 # https is what we run when testing in most CI providers.
 # This does breaking change detection against our  git repository.
 
 .PHONY: CI
 CI: $(BUF)
-	buf check lint --input ./proto
-	buf check breaking --against-input ".git#branch=master"
+	buf check lint ./proto
+	buf check breaking --against ".git#branch=master"
 
 .PHONY: clean
 clean:
