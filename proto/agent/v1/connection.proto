@@ -23,10 +23,10 @@ message UpdateAgentConnection {
 
     // > 15 optional fields:
     // How long the system was running until connection (only applicable when reachable=true)
-    google.protobuf.Timestamp system_uptime = 15;
+    google.protobuf.Duration system_uptime = 15;
 
     // How long the netdata agent was running until connection (only applicable when reachable=true)
-    google.protobuf.Timestamp agent_uptime = 16;
+    google.protobuf.Duration agent_uptime = 16;
 }
 
 
