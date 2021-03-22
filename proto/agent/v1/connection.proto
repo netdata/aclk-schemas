@@ -35,6 +35,11 @@ message CloudCommand {
     google.protobuf.Any payload = 2;
 }
 
+message SendNodeInstances {
+    string claim_id = 1;
+    string mqtt_broker_addr = 2;
+}
+
 enum MessageType {
     MESSAGE_TYPE_SEND_NODE_INSTANCES = 0;
 }
