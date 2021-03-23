@@ -1,0 +1,10 @@
+syntax = "proto3";
+option go_package = "node_instance/creation/v1;node_instancecreation";
+
+package node.create.v1;
+
+message CreateNodeInstance {
+    string claim_id = 1;
+    string machine_guid = 2;
+    string hostname = 3;
+}
