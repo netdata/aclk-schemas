@@ -1,0 +1,43 @@
+syntax = "proto3";
+option go_package = "agent/v1;agent";
+
+package agent.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+
+message UpdateAgentConnection {
+    string claim_id = 1;
+    bool reachable = 2;
+
+    int64 session_id = 3;
+
+    ConnectionUpdateSource update_source = 4;
+
+    // mqtt_broker_addr shard to use for reaching the agent
+    // cloud injects this information
+    string mqtt_broker_addr = 5;
+
+    google.protobuf.Timestamp updated_at = 6;
+
+    // > 15 optional fields:
+    // How long the system was running until connection (only applicable when reachable=true)
+    google.protobuf.Duration system_uptime = 15;
+
+    // How long the netdata agent was running until connection (only applicable when reachable=true)
+    google.protobuf.Duration agent_uptime = 16;
+}
+
+
+// ConnectionUpdateSource is to determine whether the connection update was issued 
+enum ConnectionUpdateSource {
+    // CONNECTION_UPDATE_SOURCE_UNSPECIFIED acts as default value for protobuf and is never specified
+    CONNECTION_UPDATE_SOURCE_UNSPECIFIED = 0;
+    // CONNECTION_UPDATE_SOURCE_AGENT A direct message from an agent
+    CONNECTION_UPDATE_SOURCE_AGENT = 1;
+    // CONNECTION_UPDATE_SOURCE_LWT message delivered as the Last Will and Testiment  from MQTT broker if an agent connection with the broker is lost 
+    CONNECTION_UPDATE_SOURCE_LWT = 2;
+    // CONNECTION_UPDATE_SOURCE_HEURISTIC A cloud generated message to sanitize incorrect internal state
+    CONNECTION_UPDATE_SOURCE_HEURISTIC = 3;
+}
