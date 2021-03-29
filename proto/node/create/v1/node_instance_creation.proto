@@ -8,3 +8,8 @@ message CreateNodeInstance {
     string machine_guid = 2;
     string hostname = 3;
 }
+
+message CreateNodeInstanceResult {
+    string node_id = 1;
+    string machine_guid = 2;
+}
