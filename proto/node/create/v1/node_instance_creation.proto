@@ -13,3 +13,4 @@ message CreateNodeInstanceResult {
     string node_id = 1;
     string machine_guid = 2;
 }
+
