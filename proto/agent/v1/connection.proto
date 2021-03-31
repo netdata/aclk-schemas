@@ -30,18 +30,8 @@ message UpdateAgentConnection {
     google.protobuf.Duration agent_uptime = 16;
 }
 
-message CloudCommand {
-    MessageType type = 1;
-    google.protobuf.Any payload = 2;
-}
-
 message SendNodeInstances {
     string claim_id = 1;
-    string mqtt_broker_addr = 2;
-}
-
-enum MessageType {
-    MESSAGE_TYPE_SEND_NODE_INSTANCES = 0;
 }
 
 // ConnectionUpdateSource is to determine whether the connection update was issued 
