@@ -21,6 +21,10 @@ message UpdateAgentConnection {
 
     google.protobuf.Timestamp updated_at = 6;
 
+    // vmq_instance_id broker shard to use for reaching the agent
+    // cloud injects this information
+    int32 vmq_instance_id = 7;
+
     // > 15 optional fields:
     // How long the system was running until connection (only applicable when reachable=true)
     google.protobuf.Duration system_uptime = 15;
