@@ -33,6 +33,9 @@ message UpdateAgentConnection {
     google.protobuf.Duration agent_uptime = 16;
 }
 
+message SendNodeInstances {
+    string claim_id = 1;
+}
 
 // ConnectionUpdateSource is to determine whether the connection update was issued 
 enum ConnectionUpdateSource {
