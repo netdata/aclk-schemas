@@ -12,7 +12,7 @@ PROJECT := cloud-schemas
 HTTPS_GIT := https://github.com/netdata/cloud-schemas.git
 
 # This controls the version of buf to install and use.
-BUF_VERSION := 0.6.0
+BUF_VERSION := 0.40.0
 
 ### Everything below this line is meant to be static, i.e. only adjust the above variables. ###
 
@@ -57,16 +57,16 @@ deps: $(BUF)
 
 .PHONY: local
 local: $(BUF)
-	buf check lint ./proto
-	buf check breaking --against '.git#branch=master'
+	buf lint ./proto 
+	buf breaking --against '.git#branch=master'
 
 # https is what we run when testing in most CI providers.
 # This does breaking change detection against our  git repository.
 
 .PHONY: CI
 CI: $(BUF)
-	buf check lint ./proto
-	buf check breaking --against ".git#branch=master"
+	buf lint ./proto
+	buf breaking --against ".git#branch=master"
 
 .PHONY: clean
 clean:
