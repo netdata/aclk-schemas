@@ -1,7 +1,7 @@
 syntax = "proto3";
 option go_package = "node_instance/creation/v1;node_instancecreation";
 
-package node.create.v1;
+package nodeinstance.create.v1;
 
 message CreateNodeInstance {
     string claim_id = 1;
