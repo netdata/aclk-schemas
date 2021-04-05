@@ -7,6 +7,8 @@ message CreateNodeInstance {
     string claim_id = 1;
     string machine_guid = 2;
     string hostname = 3;
+
+    int32 vmq_instance_id = 4;
 }
 
 message CreateNodeInstanceResult {
