@@ -5,8 +5,8 @@ package nodeinstance.create.v1;
 
 message CreateNodeInstance {
     // Claim ID of the Agent the Node Instance belongs to.
-    // Eventually, the NodeInstance will be identified by the NodeID returned with `CreateNodeInstanceResult`
-    // and this claim_id.
+    // Eventually, the NodeInstance will be identified by the compilation of
+    // this claim_id and NodeID returned by `CreateNodeInstanceResult`
     string claim_id = 1;
     // Machine GUID of the Machine the request comes from
     // Used to look for an existing NodeID in the space claim_id belongs to
