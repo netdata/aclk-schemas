@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "node_instance/creation/v1;node_instancecreation";
+option go_package = "nodeinstance/creation/v1;nodeinstancecreation";
 
 package nodeinstance.create.v1;
 
