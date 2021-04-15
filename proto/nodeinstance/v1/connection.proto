@@ -12,7 +12,7 @@ message UpdateNodeInstanceConnection {
     // liveness whether node data are actively streamed to the agent.
     bool liveness = 3;
 
-    // queryable whether the agent have data about the node.
+    // queryable whether the agent has data about the node.
     bool queryable = 4;
 
     int64 session_id = 5;
@@ -26,4 +26,8 @@ message UpdateNodeInstanceConnection {
     // vmq_instance_id broker shard to use for reaching the agent
     // cloud injects this information.
     int32 vmq_instance_id = 8;
+
+    // hops is the number of streaming hops between collection of node data
+    // and the claimed agent. Zero if no streaming is involved.
+    int32 hops = 9;
 }
