@@ -1,0 +1,28 @@
+syntax = "proto3";
+option go_package = "node_instance/creation/v1;node_instancecreation";
+
+package nodeinstance.create.v1;
+
+message CreateNodeInstance {
+    // Claim ID of the Agent the Node Instance belongs to.
+    // Eventually, the NodeInstance will be identified by the compilation of
+    // this claim_id and NodeID returned by `CreateNodeInstanceResult`
+    string claim_id = 1;
+    // Machine GUID of the Machine the request comes from
+    // Used to look for an existing NodeID in the space claim_id belongs to
+    string machine_guid = 2;
+    string hostname = 3;
+
+    // vmq_instance_id broker shard to use for reaching the agent
+    // cloud injects this information.
+    int32 vmq_instance_id = 4;
+    // mqtt_broker_addr shard to use for reaching the agent
+    // cloud injects this information.
+    string mqtt_broker_addr = 5;
+}
+
+message CreateNodeInstanceResult {
+    string node_id = 1;
+    string machine_guid = 2;
+}
+
