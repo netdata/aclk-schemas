@@ -1,25 +1,20 @@
 syntax = "proto3";
-option go_package = "chart/send/v1;stream_charts";
+option go_package = "chart/stream/v1;charts";
 
 package chart.v1;
 
 import "google/protobuf/timestamp.proto";
 
 message StreamChartsAndDimensions {
-
   // claim_id, node_id pair is used to identify the Node Instance
   string claim_id = 1;
   string node_id = 2;
   // used to define the position of the Cloud
+  //
+  // seq_id last verified sequence sent by the agent
   int64 seq_id = 3;
   int64 prev_seq_id = 4;
+  // batch_id incremented every time the cloud sends a new StreamChartsAndDimensions command
   int64 batch_id = 5;
   google.protobuf.Timestamp updated_at = 6;
-
-  // vmq_instance_id broker shard to use for reaching the agent
-  // cloud injects this information.
-  int32 vmq_instance_id = 7;
-  // mqtt_broker_addr shard to use for reaching the agent
-  // cloud injects this information.
-  string mqtt_broker_addr = 8;
 }
