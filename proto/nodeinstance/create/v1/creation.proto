@@ -19,6 +19,10 @@ message CreateNodeInstance {
     // mqtt_broker_addr shard to use for reaching the agent
     // cloud injects this information.
     string mqtt_broker_addr = 5;
+
+    // hops is the number of streaming hops between collection of node data
+    //   and the claimed agent. Zero if no streaming is involved.
+    int32 hops = 6;
 }
 
 message CreateNodeInstanceResult {
