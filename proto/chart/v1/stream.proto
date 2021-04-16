@@ -9,8 +9,7 @@ message StreamChartsAndDimensions {
   // claim_id, node_id pair is used to identify the Node Instance
   string claim_id = 1;
   string node_id = 2;
-  // used to define the position of the Cloud
-  //
+
   // seq_id last verified sequence sent by the agent
   int64 seq_id = 3;
   int64 prev_seq_id = 4;
