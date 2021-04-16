@@ -12,8 +12,7 @@ message StreamChartsAndDimensions {
 
   // seq_id last verified sequence sent by the agent
   int64 seq_id = 3;
-  int64 prev_seq_id = 4;
   // batch_id incremented every time the cloud sends a new StreamChartsAndDimensions command
-  int64 batch_id = 5;
-  google.protobuf.Timestamp updated_at = 6;
+  int64 batch_id = 4;
+  google.protobuf.Timestamp updated_at = 5;
 }
