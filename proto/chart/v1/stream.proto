@@ -1,0 +1,18 @@
+syntax = "proto3";
+option go_package = "chart/stream/v1;charts";
+
+package chart.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message StreamChartsAndDimensions {
+  // claim_id, node_id pair is used to identify the Node Instance
+  string claim_id = 1;
+  string node_id = 2;
+
+  // seq_id last verified sequence sent by the agent
+  int64 seq_id = 3;
+  // batch_id incremented every time the cloud sends a new StreamChartsAndDimensions command
+  int64 batch_id = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
