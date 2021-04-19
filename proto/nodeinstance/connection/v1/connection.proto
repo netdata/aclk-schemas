@@ -1,0 +1,33 @@
+syntax = "proto3";
+option go_package = "nodeinstance/connection/v1;nodeinstanceconnection";
+
+package nodeinstance.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message UpdateNodeInstanceConnection {
+    string claim_id = 1;
+    string node_id = 2;
+
+    // liveness whether node data are actively streamed to the agent.
+    bool liveness = 3;
+
+    // queryable whether the agent has data about the node.
+    bool queryable = 4;
+
+    int64 session_id = 5;
+
+    google.protobuf.Timestamp updated_at = 6;
+
+    // mqtt_broker_addr shard to use for reaching the agent
+    // cloud injects this information.
+    string mqtt_broker_addr = 7;
+
+    // vmq_instance_id broker shard to use for reaching the agent
+    // cloud injects this information.
+    int32 vmq_instance_id = 8;
+
+    // hops is the number of streaming hops between collection of node data
+    // and the claimed agent. Zero if no streaming is involved.
+    int32 hops = 9;
+}
