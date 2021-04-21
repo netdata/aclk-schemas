@@ -1,1 +1,6 @@
 *.pb.go
+*.pb.cc
+*.pb.h
+*.pb.o
+*.pb.Po
+.dirstamp
