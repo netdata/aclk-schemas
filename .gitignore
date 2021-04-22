@@ -1,4 +1,11 @@
 *.pb.go
 
+#Agent
+*.pb.cc
+*.pb.h
+*.pb.o
+*.pb.Po
+.dirstamp
+
 #Jetbrains
 .idea
