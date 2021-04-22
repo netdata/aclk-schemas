@@ -3,7 +3,7 @@ option go_package = "chart/config/v1;config";
 
 package config.v1;
 
-// ChartConfigListUpdated command contains the list of missing chart configs from the cloud to agent
+// UpdateChartConfigs command contains the list of missing chart configs from the cloud to agent
 message UpdateChartConfigs {
   // claim_id, node_id pair is used to identify the Node Instance
   string claim_id = 1;
