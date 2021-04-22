@@ -3,8 +3,6 @@ option go_package = "chart/instance/v1;chartinstance";
 
 package chart.v1;
 
-import "google/protobuf/timestamp.proto";
-
 message ChartInstanceUpdate {
   string id = 1;
   string claim_id = 2;
