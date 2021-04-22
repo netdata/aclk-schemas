@@ -10,9 +10,10 @@ message StreamChartsAndDimensions {
   string claim_id = 1;
   string node_id = 2;
 
-  // seq_id last verified sequence sent by the agent
-  int64 seq_id = 3;
-  // batch_id incremented every time the cloud sends a new StreamChartsAndDimensions command
-  int64 batch_id = 4;
+  // sequence_id last verified sequence sent by the Agent
+  uint64 sequence_id = 3;
+  // batch_id identifies the stream_id and gets incremented every time the Cloud sends a new StreamChartsAndDimensions command
+  uint64 batch_id = 4;
+  // updated_at the last timestamp when the sequence_id was updated from the Cloud
   google.protobuf.Timestamp updated_at = 5;
 }

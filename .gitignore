@@ -1,1 +1,4 @@
 *.pb.go
+
+#Jetbrains
+.idea
