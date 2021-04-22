@@ -1,0 +1,22 @@
+syntax = "proto3";
+option go_package = "envelope/aclk/v1;aclkenvelope";
+
+package envelope.v1;
+
+import "google/protobuf/timestamp.proto";
+
+import "chart.v1/dimension.proto";
+import "chart.v1/instance.proto";
+
+// each nested message should include its sequence_id
+message ACLKMessageEnvelope {
+  repeated chart.v1.ChartInstanceUpdate charts = 1;
+  repeated chart.v1.ChartDimensionUpdate dimensions = 2;
+  uint64 batch_id = 3;
+  ACLKMessageType messageType = 4;
+}
+
+enum ACLKMessageType {
+  CHART = 0;
+  ALERT = 1;
+}

@@ -1,0 +1,29 @@
+syntax = "proto3";
+option go_package = "chart/instance/v1;chartinstance";
+
+package chart.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message ChartInstanceUpdate {
+  string id = 1;
+  string claim_id = 2;
+  string node_id = 3;
+  string name = 4;
+  map<string, string> chart_labels = 5;
+  MemoryMode memory_mode = 6;
+  // in seconds
+  uint32 update_every_interval = 7;
+  string config_hash = 8;
+  uint64 sequence_id = 9;
+  uint64 previous_sequence_id = 10;
+}
+
+enum MemoryMode {
+  DB_ENGINE = 0;
+  RAM = 1;
+  SAVE = 2;
+  MAP = 3;
+  NONE = 4;
+  ALLOC = 5;
+}
