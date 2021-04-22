@@ -1,0 +1,56 @@
+syntax = "proto3";
+option go_package = "chart/update/v1;chartupdate";
+
+package chart.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// TODO split to separate proto files
+
+message ChartDimensionUpdate {
+  string id = 1;
+  string chart_id = 2;
+  string node_id = 3;
+  string claim_id = 4;
+  string name = 5;
+  google.protobuf.Timestamp created_at = 6;
+  // null value means that the dimension is currently collected (live)
+  google.protobuf.Timestamp last_timestamp = 7;
+  uint64 sequence_id = 8;
+  uint64 previous_sequence_id = 9;
+}
+
+message ChartInstanceUpdate {
+  string id = 1;
+  string claim_id = 2;
+  string node_id = 3;
+  string name = 4;
+  map<string, string> chart_labels = 5;
+  MemoryMode memory_mode = 6;
+  // in seconds
+  uint32 update_every_interval = 7;
+  string config_hash = 8;
+  uint64 sequence_id = 9;
+  uint64 previous_sequence_id = 10;
+}
+
+message ACLKMessageEnvelope {
+  repeated ChartInstanceUpdate charts = 1;
+  repeated ChartDimensionUpdate dimensions = 2;
+  uint64 batch_id = 3;
+  ACLKMessageType messageType = 4;
+}
+
+enum ACLKMessageType {
+  CHART = 0;
+  ALERT = 1;
+}
+
+enum MemoryMode {
+  DB_ENGINE = 0;
+  RAM = 1;
+  SAVE = 2;
+  MAP = 3;
+  NONE = 4;
+  ALLOC = 5;
+}
