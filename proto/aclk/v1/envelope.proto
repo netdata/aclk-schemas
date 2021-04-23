@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package aclk.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "aclk/v1;aclkenvelope";
+
+// each nested message should include its sequence_id
+message ACLKMessageEnvelope {
+  repeated ChartInstanceUpdate charts = 1;
+  repeated ChartDimensionUpdate dimensions = 2;
+  uint64 batch_id = 3;
+}
+
+message ACLKMessagePosition {
+  uint64 sequence_id = 1;
+  // auto generated in Agent's DB upon sequence_id creation
+  google.protobuf.Timestamp seq_id_created_at = 2;
+  uint64 previous_sequence_id = 3;
+}

@@ -12,3 +12,26 @@ message UpdateChartConfigs {
   // list of config hashes missing from cloud and requested from the agent
   repeated string config_hashes = 3;
 }
+
+message ChartConfigsUpdated {
+  repeated ChartConfig configs = 1;
+}
+
+message ChartConfig {
+  string type = 1;
+  string family = 2;
+  string context = 3;
+  string title = 4;
+  uint64 priority = 5;
+  string plugin = 6;
+  string module = 7;
+  ChartType chart_type = 8;
+  string units = 9;
+  string config_hash = 10;
+}
+
+enum ChartType {
+  LINE = 0;
+  AREA = 1;
+  STACKED = 2;
+}
