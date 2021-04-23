@@ -1,7 +1,8 @@
 syntax = "proto3";
-option go_package = "chart/config/v1;config";
 
 package config.v1;
+
+option go_package = "chart/config/v1;config";
 
 // UpdateChartConfigs command contains the list of missing chart configs from the cloud to agent
 message UpdateChartConfigs {
