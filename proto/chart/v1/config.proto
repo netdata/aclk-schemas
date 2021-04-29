@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package config.v1;
+package chart.v1;
 
-option go_package = "chart/config/v1;config";
+option go_package = "chart/config/v1;chartconfig";
 
 // UpdateChartConfigs command contains the list of missing chart configs from the cloud to agent
 message UpdateChartConfigs {
@@ -18,16 +18,18 @@ message ChartConfigsUpdated {
 }
 
 message ChartConfig {
-  string type = 1;
-  string family = 2;
-  string context = 3;
-  string title = 4;
-  uint64 priority = 5;
-  string plugin = 6;
-  string module = 7;
-  ChartType chart_type = 8;
-  string units = 9;
-  string config_hash = 10;
+  string id = 1;
+  string name = 2;
+  string type = 3;
+  string family = 4;
+  string context = 5;
+  string title = 6;
+  uint64 priority = 7;
+  string plugin = 8;
+  string module = 9;
+  ChartType chart_type = 10;
+  string units = 11;
+  string config_hash = 12;
 }
 
 enum ChartType {

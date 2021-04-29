@@ -2,60 +2,14 @@ syntax = "proto3";
 
 package aclk.v1;
 
-import "google/protobuf/timestamp.proto";
+import "proto/chart/v1/instance.proto";
+import "proto/chart/v1/dimension.proto";
 
 option go_package = "aclk/v1;aclkenvelope";
 
 // ACLKMessageEnvelope is the wrapper used by the Agent to dispatch bundled, sequenced messages to the Cloud
 message ACLKMessageEnvelope {
-  repeated ChartInstanceUpdate charts = 1;
-  repeated ChartDimensionUpdate dimensions = 2;
+  repeated chart.v1.ChartInstanceUpdate charts = 1;
+  repeated chart.v1.ChartDimensionUpdate dimensions = 2;
   uint64 batch_id = 3;
-}
-
-// ACLKMessagePosition is used by sequenced messages to define their exact position
-message ACLKMessagePosition {
-  uint64 sequence_id = 1;
-  // auto generated in Agent's DB upon sequence_id creation
-  google.protobuf.Timestamp seq_id_created_at = 2;
-  uint64 previous_sequence_id = 3;
-}
-
-// ChartDimensionUpdate is an event sent from the Agent to the Cloud containing chart dimension data.
-// ChartDimensionUpdate messages are dispatched to the Cloud wrapped in an ACLKMessageEnvelope.
-message ChartDimensionUpdate {
-  string id = 1;
-  string chart_id = 2;
-  string node_id = 3;
-  string claim_id = 4;
-  string name = 5;
-  google.protobuf.Timestamp created_at = 6;
-  // null value means that the dimension is currently collected (live)
-  google.protobuf.Timestamp last_timestamp = 7;
-
-  ACLKMessagePosition position = 8;
-}
-
-// ChartInstanceUpdate is an event sent from the Agent to the Cloud containing chart instance data.
-// ChartInstanceUpdate messages are dispatched to the Cloud wrapped in an ACLKMessageEnvelope.
-message ChartInstanceUpdate {
-  string id = 1;
-  string claim_id = 2;
-  string node_id = 3;
-  string name = 4;
-  map<string, string> chart_labels = 5;
-  MemoryMode memory_mode = 6;
-  // in seconds
-  uint32 update_every_interval = 7;
-  string config_hash = 8;
-  ACLKMessagePosition position = 9;
-}
-
-enum MemoryMode {
-  NONE = 0;
-  RAM = 1;
-  MAP = 2;
-  SAVE = 3;
-  ALLOC = 4;
-  DB_ENGINE = 5;
 }
