@@ -14,10 +14,10 @@ message UpdateChartConfigs {
 }
 
 message ChartConfigsUpdated {
-  repeated ChartConfig configs = 1;
+  repeated ChartConfigUpdated configs = 1;
 }
 
-message ChartConfig {
+message ChartConfigUpdated {
   string id = 1;
   string name = 2;
   string type = 3;
