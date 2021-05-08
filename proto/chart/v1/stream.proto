@@ -4,6 +4,9 @@ package chart.v1;
 
 import "google/protobuf/timestamp.proto";
 
+import "proto/chart/v1/instance.proto";
+import "proto/chart/v1/dimension.proto";
+
 option go_package = "chart/stream/v1;chartstream";
 
 // StreamChartsAndDimensions is a Command produced by the Cloud, consumed by the Agent.
