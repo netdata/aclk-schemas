@@ -6,9 +6,10 @@ import "proto/aclk/v1/lib.proto";
 
 option go_package = "chart/instance/v1;chartinstance";
 
-// ChartInstanceUpdate is an event sent from the Agent to the Cloud containing chart instance data.
-// ChartInstanceUpdate messages are dispatched to the Cloud wrapped in an ACLKMessageEnvelope.
-message ChartInstanceUpdate {
+// ChartInstanceUpdated is a single event sent from the Agent to the Cloud containing chart instance data.
+//
+// ChartInstanceUpdated messages are dispatched in bulk to the Cloud wrapped in ChartsAndDimensionsUpdated messages.
+message ChartInstanceUpdated {
   string id = 1;
   string claim_id = 2;
   string node_id = 3;

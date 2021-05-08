@@ -8,9 +8,10 @@ import "proto/aclk/v1/lib.proto";
 
 option go_package = "chart/dimension/v1;chartdimension";
 
-// ChartDimensionUpdate is an event sent from the Agent to the Cloud containing chart dimension data.
-// ChartDimensionUpdate messages are dispatched to the Cloud wrapped in an ACLKMessageEnvelope.
-message ChartDimensionUpdate {
+// ChartDimensionUpdated is a single event sent from the Agent to the Cloud containing chart dimension data.
+//
+// ChartDimensionUpdated messages are dispatched in bulk to the Cloud wrapped in ChartsAndDimensionsUpdated messages.
+message ChartDimensionUpdated {
   string id = 1;
   string chart_id = 2;
   string node_id = 3;
