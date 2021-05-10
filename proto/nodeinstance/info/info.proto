@@ -1,0 +1,82 @@
+syntax = "proto3";
+option go_package = "node_instance/info/v1;nodeinstanceinfo";
+
+package nodeinstance.info.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// UpdateNodeInfo (Command)
+//
+// pulsar topic: `UpdateNodeInfo` (sharded)
+//
+// key: `claim_id`
+//
+// Publishers: `agent-ctrl-service`
+// Subscribers: `Node Service`
+//
+// When:
+//  On nodeinstance connect
+//
+message UpdateNodeInfo {
+  string node_id = 7;
+
+  string claim_id = 1;
+
+  NodeInfo data = 2;
+
+  google.protobuf.Timestamp updated_at = 3;
+
+  int64 session_id = 4;
+
+  string machine_guid = 5;
+
+  bool child = 6;
+}
+
+
+// NodeInfo describes the metadata of a node
+message NodeInfo {
+  string name = 1;
+  string machine_guid = 19;
+
+  repeated string services = 18;
+
+  string os = 2;
+  string os_name = 3;
+  string os_version = 4;
+
+  string kernel_name = 5;
+  string kernel_version = 6;
+
+  string architecture = 7;
+
+  // number of cpu cores in the node
+  uint32 cpus = 8;
+
+  // human readable (value + unit) frequency of cpu
+  string cpu_frequency = 9;
+
+  // human readable (value + unit) size of node's memory
+  string memory = 10;
+
+  // human readable (value + unit) size of all (sum) node's disks
+  string disk_space = 11;
+
+  // version of the netdata agent
+  string version = 12;
+
+  // release channel of netdata agent (example: nightly)
+  string release_channel = 13;
+
+  string timezone = 14;
+
+  // virtualization_type example: kvm (optional)
+  string virtualization_type = 15;
+
+  // container_type example: docker (optional)
+  string container_type = 16;
+
+  string custom_info = 17;
+
+  map<string, string> host_labels = 21;
+}
