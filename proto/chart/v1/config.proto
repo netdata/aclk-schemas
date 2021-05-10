@@ -1,7 +1,8 @@
 syntax = "proto3";
-option go_package = "chart/config/v1;config";
 
-package config.v1;
+package chart.v1;
+
+option go_package = "chart/config/v1;chartconfig";
 
 // UpdateChartConfigs command contains the list of missing chart configs from the cloud to agent
 message UpdateChartConfigs {
@@ -10,4 +11,29 @@ message UpdateChartConfigs {
   string node_id = 2;
   // list of config hashes missing from cloud and requested from the agent
   repeated string config_hashes = 3;
+}
+
+message ChartConfigsUpdated {
+  repeated ChartConfigUpdated configs = 1;
+}
+
+message ChartConfigUpdated {
+  string id = 1;
+  string name = 2;
+  string type = 3;
+  string family = 4;
+  string context = 5;
+  string title = 6;
+  uint64 priority = 7;
+  string plugin = 8;
+  string module = 9;
+  ChartType chart_type = 10;
+  string units = 11;
+  string config_hash = 12;
+}
+
+enum ChartType {
+  LINE = 0;
+  AREA = 1;
+  STACKED = 2;
 }

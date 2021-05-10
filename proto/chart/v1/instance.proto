@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package chart.v1;
+
+import "proto/aclk/v1/lib.proto";
+
+option go_package = "chart/instance/v1;chartinstance";
+
+// ChartInstanceUpdated is a single event sent from the Agent to the Cloud containing chart instance data.
+//
+// ChartInstanceUpdated messages are dispatched in bulk to the Cloud wrapped in ChartsAndDimensionsUpdated messages.
+message ChartInstanceUpdated {
+  string id = 1;
+  string claim_id = 2;
+  string node_id = 3;
+  string name = 4;
+  map<string, string> chart_labels = 5;
+  MemoryMode memory_mode = 6;
+  // in seconds
+  uint32 update_every_interval = 7;
+  string config_hash = 8;
+  aclk_lib.v1.ACLKMessagePosition position = 9;
+}
+
+enum MemoryMode {
+  NONE = 0;
+  RAM = 1;
+  MAP = 2;
+  SAVE = 3;
+  ALLOC = 4;
+  DB_ENGINE = 5;
+}

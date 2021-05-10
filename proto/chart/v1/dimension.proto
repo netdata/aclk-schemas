@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package chart.v1;
+
+import "google/protobuf/timestamp.proto";
+
+import "proto/aclk/v1/lib.proto";
+
+option go_package = "chart/dimension/v1;chartdimension";
+
+// ChartDimensionUpdated is a single event sent from the Agent to the Cloud containing chart dimension data.
+//
+// ChartDimensionUpdated messages are dispatched in bulk to the Cloud wrapped in ChartsAndDimensionsUpdated messages.
+message ChartDimensionUpdated {
+  string id = 1;
+  string chart_id = 2;
+  string node_id = 3;
+  string claim_id = 4;
+  string name = 5;
+  google.protobuf.Timestamp created_at = 6;
+  // null value means that the dimension is currently collected (live)
+  google.protobuf.Timestamp last_timestamp = 7;
+  aclk_lib.v1.ACLKMessagePosition position = 8;
+}
