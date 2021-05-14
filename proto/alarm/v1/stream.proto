@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package alarm.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "alarm/alarm/v1;alarmstream";
+
+
+
+message SendAlarmLogHealth {
+}
+
+message AlarmLogHealth {
+    bool enabled = 1;
+    AlarmLogStatus status = 2;
+    LogEntries log_entries = 3;
+}
+
+message LogEntries {
+    int64 first_sequence_id = 1;
+    google.protobuf.Timestamp first_when = 2;
+
+    int64 last_sequence_id = 3;
+    google.protobuf.Timestamp last_when = 4;
+}
+
+enum AlarmLogStatus {
+    ALARM_LOG_STATUS_UNSPECIFIED = 0;
+    ALARM_LOG_STATUS_RUNNING = 1;
+    ALARM_LOG_STATUS_IDLE = 2;
+}
+
+
+message StartStreaming {
+    string node_id = 1;
+    uint64 batch_id = 2;
+    uint64 start_sequnce_id = 3;
+
+    // TODO do we need "action" field
+}
+
+message AlarmLogEntry {
+    string node_id = 1;
+    string claim_id = 2;
+
+    string chart = 3;
+    string name = 4;
+    uint64 batch_id = 5;
+    uint64 sequence_id = 6;
+    uint64 when = 7;
+
+    string config_hash = 8;
+
+    AlarmStatus status = 9;
+    AlarmStatus old_status = 10;
+    uint64 delay_up_to_timestamp = 11;
+    // Todo: verify that we need these. sequence_id doesn't suffice?
+    //  uint64 updated_by_id = 12;
+    //  uint64 updates_id = 13;
+    uint64 last_repeat = 14;
+    bool silenced = 15;
+    uint64 value = 16;
+    uint64 old_value = 17;
+
+}
+
+enum AlarmStatus {
+    ALARM_STATUS_UNKNOWN = 0;
+    ALARM_STATUS_REMOVED = 1;
+    ALARM_STATUS_UNITIALIZED = 2;
+    ALARM_STATUS_UNDEFINED = 3;
+    ALARM_STATUS_CLEAR = 4;
+    ALARM_STATUS_WARNING = 5;
+    ALARM_STATUS_CRITICAL = 6;
+}

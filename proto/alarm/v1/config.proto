@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package alarm.v1;
+
+option go_package = "alarm/config/v1;alarmconfig";
+
+message AlarmConfiguration{
+    string config_hash = 1;
+    string type = 2;
+    string on = 3;
+    string info = 4;
+    string chart_id = 5;
+    string units = 6;
+    string exec_path = 7;
+    string recipient = 8;
+    string conf_source = 9;
+    uint64 update_every = 10;
+    // Todo: verify that we still need these. Aren't we covered from delay_up_to_timestamp attribute of event?
+    //  uint64 delay_up_duration = 11;
+    //  uint64 delay_down_duration = 11;
+    //  uint64 delay_max_duration = 11;
+    //  uint64 delay_multiplier = 11;
+    //  uint64 delay = 11;
+    string warning_expr = 11;
+    string critical_expr = 12;
+    string calculation_expr = 13;
+  }
