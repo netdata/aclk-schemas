@@ -4,6 +4,10 @@ package alarm.v1;
 
 option go_package = "alarm/config/v1;alarmconfig";
 
+message SendAlarmConfiguration{
+    string config_hash = 1;
+}
+
 message AlarmConfiguration{
     string config_hash = 1;
     string type = 2;
