@@ -37,9 +37,6 @@ message UpdateNodeInfo {
 // NodeInfo describes the metadata of a node
 message NodeInfo {
   string name = 1;
-  string machine_guid = 19;
-
-  repeated string services = 18;
 
   string os = 2;
   string os_name = 3;
@@ -77,6 +74,13 @@ message NodeInfo {
   string container_type = 16;
 
   string custom_info = 17;
+
+  repeated string services = 18;
+
+  string machine_guid = 19;
+
+  // [Obsolete] repeated MirroredHostStatus mirrored_hosts_status = 20;
+  reserved 20;
 
   map<string, string> host_labels = 21;
 }
