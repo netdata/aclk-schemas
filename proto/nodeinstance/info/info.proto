@@ -9,10 +9,10 @@ import "google/protobuf/timestamp.proto";
 //
 // pulsar topic: `UpdateNodeInfo` (sharded)
 //
-// key: `claim_id`
+// key: `claim_id,node_id`
 //
-// Publishers: `agent-ctrl-service`
-// Subscribers: `Node Service`
+// Publishers: `netdata/agent`
+// Subscribers: `cloud-node-mqtt-output-service`
 //
 // When:
 //  On nodeinstance connect
