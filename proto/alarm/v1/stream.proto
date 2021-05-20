@@ -4,17 +4,18 @@ package alarm.v1;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "alarm/alarm/v1;alarmstream";
-
-
+option go_package = "alarm/stream/v1;alarmstream";
 
 message SendAlarmLogHealth {
+    string node_id = 1;
 }
 
 message AlarmLogHealth {
-    bool enabled = 1;
-    AlarmLogStatus status = 2;
-    LogEntries log_entries = 3;
+    string claim_id = 1;
+    string node_id = 2;
+    bool enabled = 3;
+    AlarmLogStatus status = 4;
+    LogEntries log_entries = 5;
 }
 
 message LogEntries {
@@ -37,7 +38,7 @@ message StartStreaming {
     uint64 batch_id = 2;
     uint64 start_sequnce_id = 3;
 
-    // TODO do we need "action" field
+    // TODO do we need "action" field ?
 }
 
 message AlarmLogEntry {
