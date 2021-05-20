@@ -60,16 +60,21 @@ message AlarmLogEntry {
     //  uint64 updates_id = 13;
     uint64 last_repeat = 14;
     bool silenced = 15;
-    uint64 value = 16;
-    uint64 old_value = 17;
+    double value = 16;
+    double old_value = 17;
 
+    // updated alarm entry, when the status of the alarm has been updated by a later entry
+    bool updated = 18;
+
+    // rendered_info 
+    string rendered_info = 19;
 }
 
 enum AlarmStatus {
-    ALARM_STATUS_UNKNOWN = 0;
-    ALARM_STATUS_REMOVED = 1;
-    ALARM_STATUS_UNITIALIZED = 2;
-    ALARM_STATUS_UNDEFINED = 3;
+    ALARM_STATUS_NULL = 0;
+    ALARM_STATUS_UNKNOWN = 1;
+    ALARM_STATUS_REMOVED = 2;
+    ALARM_STATUS_NOT_A_NUMBER = 3;
     ALARM_STATUS_CLEAR = 4;
     ALARM_STATUS_WARNING = 5;
     ALARM_STATUS_CRITICAL = 6;
