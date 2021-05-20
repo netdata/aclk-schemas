@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package alarm.v1;
+package alarmconfig.v1;
 
 option go_package = "alarm/config/v1;alarmconfig";
 

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package alarm.v1;
+package alarmstream.v1;
 
 import "google/protobuf/timestamp.proto";
 
