@@ -41,8 +41,8 @@ message ChartsAndDimensionsAck {
 }
 
 enum ChartsAndDimensionsAckSource {
-  CHART_INSTANCE_UPDATE = 0;
-  CHART_DIMENSION_UPDATE = 1;
+  CHART_INSTANCE_UPDATED = 0;
+  CHART_DIMENSION_UPDATED = 1;
 }
 
 // ResetChartMessages is a Command produced by the Agent, consumed by the Cloud.
