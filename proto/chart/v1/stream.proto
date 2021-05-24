@@ -36,6 +36,13 @@ message ChartsAndDimensionsAck {
   string node_id = 2;
   // the last verified stored message's seq_id
   uint64 last_sequence_id = 3;
+  // the message type that triggered this ack message
+  ChartsAndDimensionsAckSource source = 4;
+}
+
+enum ChartsAndDimensionsAckSource {
+  CHART_INSTANCE_UPDATE = 0;
+  CHART_DIMENSION_UPDATE = 1;
 }
 
 // ResetChartMessages is a Command produced by the Agent, consumed by the Cloud.
