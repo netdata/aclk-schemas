@@ -24,11 +24,4 @@ message AlarmConfiguration{
     string warning_expr = 7;
     string critical_expr = 8;
     string calculation_expr = 9;
-
-    // Todo: verify that we still need these. Aren't we covered from delay_up_to_timestamp attribute of event?
-    //  uint64 delay_up_duration = 11;
-    //  uint64 delay_down_duration = 11;
-    //  uint64 delay_max_duration = 11;
-    //  uint64 delay_multiplier = 11;
-    //  uint64 delay = 11;
-  }
+}
