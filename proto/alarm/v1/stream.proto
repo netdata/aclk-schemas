@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package alarmstream.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "alarm/stream/v1;alarmstream";
+
+message SendAlarmLogHealth {
+    string node_id = 1;
+}
+
+message AlarmLogHealth {
+    string claim_id = 1;
+    string node_id = 2;
+    bool enabled = 3;
+    AlarmLogStatus status = 4;
+    LogEntries log_entries = 5;
+}
+
+message LogEntries {
+    int64 first_sequence_id = 1;
+    google.protobuf.Timestamp first_when = 2;
+
+    int64 last_sequence_id = 3;
+    google.protobuf.Timestamp last_when = 4;
+}
+
+enum AlarmLogStatus {
+    ALARM_LOG_STATUS_UNSPECIFIED = 0;
+    ALARM_LOG_STATUS_RUNNING = 1;
+    ALARM_LOG_STATUS_IDLE = 2;
+}
+
+
+message StartAlarmStreaming {
+    string node_id = 1;
+    uint64 batch_id = 2;
+    uint64 start_sequnce_id = 3;
+}
+
+message AlarmLogEntry {
+    string node_id = 1;
+    string claim_id = 2;
+
+    string chart = 3;
+    string name = 4;
+    uint64 batch_id = 5;
+    uint64 sequence_id = 6;
+    uint64 when = 7;
+
+    string config_hash = 8;
+
+    AlarmStatus status = 9;
+    AlarmStatus old_status = 10;
+    uint64 delay_up_to_timestamp = 11;
+    // Todo: verify that we need these. sequence_id doesn't suffice?
+    //  uint64 updated_by_id = 12;
+    //  uint64 updates_id = 13;
+    uint64 last_repeat = 14;
+    bool silenced = 15;
+    double value = 16;
+    double old_value = 17;
+
+    // updated alarm entry, when the status of the alarm has been updated by a later entry
+    bool updated = 18;
+
+    // rendered_info 
+    string rendered_info = 19;
+}
+
+enum AlarmStatus {
+    ALARM_STATUS_NULL = 0;
+    ALARM_STATUS_UNKNOWN = 1;
+    ALARM_STATUS_REMOVED = 2;
+    ALARM_STATUS_NOT_A_NUMBER = 3;
+    ALARM_STATUS_CLEAR = 4;
+    ALARM_STATUS_WARNING = 5;
+    ALARM_STATUS_CRITICAL = 6;
+}

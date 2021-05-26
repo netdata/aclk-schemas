@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package alarmconfig.v1;
+
+option go_package = "alarm/config/v1;alarmconfig";
+
+message SendAlarmConfiguration{
+    string config_hash = 1;
+}
+
+message ProvideAlarmConfiguration {
+    string config_hash = 1;
+    AlarmConfiguration config = 2;
+}
+
+message AlarmConfiguration{
+    string info = 1;
+    string units = 2;
+    string exec_path = 3;
+    string recipient = 4;
+    string conf_source = 5;
+    uint64 update_every = 6;
+
+    string warning_expr = 7;
+    string critical_expr = 8;
+    string calculation_expr = 9;
+}
