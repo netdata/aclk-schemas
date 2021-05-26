@@ -33,12 +33,10 @@ enum AlarmLogStatus {
 }
 
 
-message StartStreaming {
+message StartAlarmStreaming {
     string node_id = 1;
     uint64 batch_id = 2;
     uint64 start_sequnce_id = 3;
-
-    // TODO do we need "action" field ?
 }
 
 message AlarmLogEntry {
