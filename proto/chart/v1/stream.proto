@@ -64,3 +64,10 @@ message ChartsAndDimensionsUpdated {
   repeated chart.v1.ChartDimensionUpdated dimensions = 2;
   uint64 batch_id = 3;
 }
+
+message RetentionUpdated {
+  string claim_id = 1;
+  string node_id = 2;
+  chart.v1.MemoryMode memory_mode = 3;
+  map<string, uint32> interval_durations = 4;
+}
