@@ -14,17 +14,20 @@ message ProvideAlarmConfiguration {
 }
 
 message AlarmConfiguration{
-    string info = 1;
-    string units = 2;
+    string name = 1;
+    string chart = 2;
+
+    string info = 3;
+    string units = 4;
     
-    string recipient = 3;
-    uint64 update_every = 4;
+    string recipient = 5;
+    uint64 update_every = 6; //maybe not used
 
-    string warning_expr = 5;
-    string critical_expr = 6;
-    string calculation_expr = 7;
+    string warning_expr = 7;
+    string critical_expr = 8;
+    string calculation_expr = 9;
 
-    string class = 8;
-    string component = 9;
-    string type = 10;
+    string class = 10;
+    string component = 11;
+    string type = 12;
 }
