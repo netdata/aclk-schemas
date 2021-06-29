@@ -45,28 +45,47 @@ message AlarmLogEntry {
 
     string chart = 3;
     string name = 4;
-    uint64 batch_id = 5;
-    uint64 sequence_id = 6;
-    uint64 when = 7;
+    string family = 5;
+    uint64 batch_id = 6;
+    uint64 sequence_id = 7;
+    uint64 when = 8;
 
-    string config_hash = 8;
+    string config_hash = 9;
 
-    AlarmStatus status = 9;
-    AlarmStatus old_status = 10;
-    uint64 delay_up_to_timestamp = 11;
+    uint32 utc_offset = 10;
+    string timezone = 11;
+
+    // Paths that can be custom for the same alarm, but depend on installation path for each user. Should be here or in config ?
+    string exec_path = 12; 
+    string conf_source = 13;
+    string command = 14;
+
+    // In seconds, uint32 is safe ?
+    uint32 duration = 15;
+    uint32 non_clear_duration = 16;
+
+    AlarmStatus status = 17;
+    AlarmStatus old_status = 18;
+    uint64 delay = 19;
+    uint64 delay_up_to_timestamp = 20;
     // Todo: verify that we need these. sequence_id doesn't suffice?
     //  uint64 updated_by_id = 12;
     //  uint64 updates_id = 13;
-    uint64 last_repeat = 14;
-    bool silenced = 15;
-    double value = 16;
-    double old_value = 17;
+    uint64 last_repeat = 21;
+    bool silenced = 22;
 
-    // updated alarm entry, when the status of the alarm has been updated by a later entry
-    bool updated = 18;
+    // Check if string values are needed
+    string value_string = 23;
+    string old_value_string = 24;
+    
+    double value = 25;
+    double old_value = 26;
 
-    // rendered_info 
-    string rendered_info = 19;
+    // Updated alarm entry, when the status of the alarm has been updated by a later entry
+    bool updated = 27;
+
+    // Rendered_info 
+    string rendered_info = 28;
 }
 
 enum AlarmStatus {
