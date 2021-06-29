@@ -65,9 +65,19 @@ message ChartsAndDimensionsUpdated {
   uint64 batch_id = 3;
 }
 
+// RetentionUpdated includes the available retentions (in seconds) of the dimensions - of a specific node instance and memory-mode -
+// on a per update_every level.
+// This message is sent over upon Agent Database rotation events to inform the Cloud in total about the newly updated data retentions
+// of a node instance's dimensions.
 message RetentionUpdated {
+  // claim_id, node_id pair is used to identify the Node Instance
   string claim_id = 1;
   string node_id = 2;
+  // the memory_mode used by the node instance's chart instances
   chart.v1.MemoryMode memory_mode = 3;
-  map<string, uint32> interval_durations = 4;
+  // this mapping identifies the newly updated available retention (in seconds) of the node instance's dimensions
+  // the keys are the update_every categories of various dimensions (1, 2, 4, 10 etc.),
+  // and the values are the available retention (in seconds) of each dimension belonging to the update_every category
+  // denoted by the key
+  map<uint32, uint32> interval_durations = 4;
 }
