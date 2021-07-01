@@ -14,14 +14,36 @@ message ProvideAlarmConfiguration {
 }
 
 message AlarmConfiguration{
-    string info = 1;
-    string units = 2;
-    string exec_path = 3;
-    string recipient = 4;
-    string conf_source = 5;
-    uint64 update_every = 6;
+    string alarm = 1;
+    string template = 2;
+    string on_chart = 3;
+    
+    string classification = 4;
+    string type = 5;
+    string component = 6;
+        
+    string os = 7;
+    string hosts = 8;
+    string plugin = 9;
+    string module = 10;
+    string charts = 11;
+    string families = 12;
+    string lookup = 13;
+    string every = 14;
+    string units = 15;
 
-    string warning_expr = 7;
-    string critical_expr = 8;
-    string calculation_expr = 9;
+    string green = 16;
+    string red = 17;
+
+    string calculation_expr = 18;
+    string warning_expr = 19;
+    string critical_expr = 20;
+    
+    string recipient = 21;
+    string exec = 22;
+    string delay = 23;
+    string repeat = 24;
+    string info = 25;
+    string options = 26;
+    string host_labels = 27;
 }
