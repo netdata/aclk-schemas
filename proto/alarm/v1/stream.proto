@@ -52,7 +52,7 @@ message AlarmLogEntry {
 
     string config_hash = 9;
 
-    uint32 utc_offset = 10;
+    int32 utc_offset = 10;
     string timezone = 11;
 
     // Paths that can be custom for the same alarm, but depend on installation path for each user. Should be here or in config ?
