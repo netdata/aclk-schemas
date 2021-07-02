@@ -80,4 +80,7 @@ message RetentionUpdated {
   // and the values are the available retention (in seconds) of each dimension belonging to the update_every category
   // denoted by the key
   map<uint32, uint32> interval_durations = 4;
+  // the timestamp when the db rotation event took place. Can be used in conjunction with the interval_durations
+  // to compute the beginning of each `updated_every` group's retention
+  google.protobuf.Timestamp rotation_timestamp = 5;
 }
