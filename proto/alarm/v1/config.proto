@@ -46,4 +46,13 @@ message AlarmConfiguration{
     string info = 25;
     string options = 26;
     string host_labels = 27;
+    
+    //parsed values from above config values
+    //indicated by p_
+    int32 p_db_lookup_after = 28;
+    int32 p_db_lookup_before = 29;
+    string p_db_lookup_dimensions = 30;
+    string p_db_lookup_method = 31;
+    string p_db_lookup_options = 32;
+    int32 p_update_every = 33;
 }
