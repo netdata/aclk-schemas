@@ -10,7 +10,7 @@ option go_package = "alarm/snapshot/v1;alarmsnapshot";
 message SendAlarmSnapshot {
     string node_id = 1;
     string claim_id = 2;
-    uint64 snapshot_id = 3; // will use a counter for these?
+    uint64 snapshot_id = 3;
     uint64 sequence_id = 4; // indicates the last sequence_id (inclusive) of message processed by cloud
 }
 
