@@ -23,5 +23,5 @@ message AlarmSnapshot{
     uint32 chunk_size = 5; // How many alerts this chunk contains
     uint32 chunk = 6; // Chunk index of this message
     
-    repeated alarmstream.v1.AlarmLogEntry alarms = 7; // a list of AlarmLogEntry's
+    repeated alarm.v1.AlarmLogEntry alarms = 7; // a list of AlarmLogEntry's
 }
