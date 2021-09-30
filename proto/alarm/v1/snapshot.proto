@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package alarmsnapshot.v1;
+package alarm.v1;
 
 import "aclk-schemas/proto/alarm/v1/stream.proto";
 
-option go_package = "alarm/snapshot/v1;alarmsnapshot";
+option go_package = "alarm/v1;alarm";
 
 // SendAlarmSnapshot: send from cloud to the agent, to initiate an AlarmSnapshot image of current alarms back to the cloud
 message SendAlarmSnapshot {
