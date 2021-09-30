@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package alarmsnapshot.v1;
 
-import "google/protobuf/timestamp.proto";
+import "aclk-schemas/proto/alarm/v1/stream.proto";
 
 option go_package = "alarm/snapshot/v1;alarmsnapshot";
 
