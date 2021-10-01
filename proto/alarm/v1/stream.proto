@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package alarm.v1;
+package alarms.v1;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "alarm/v1;alarm";
+option go_package = "alarms/v1;alarms";
 
 message SendAlarmLogHealth {
     string node_id = 1;
