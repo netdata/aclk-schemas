@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package alarm.v1;
+package alarms.v1;
 
-import "aclk-schemas/proto/alarm/v1/stream.proto";
+import "proto/alarm/v1/stream.proto";
 
-option go_package = "alarm/v1;alarm";
+option go_package = "alarms/v1;alarms";
 
 // SendAlarmSnapshot: send from cloud to the agent, to initiate an AlarmSnapshot image of current alarms back to the cloud
 message SendAlarmSnapshot {
@@ -23,5 +23,5 @@ message AlarmSnapshot{
     uint32 chunk_size = 5; // How many alerts this chunk contains
     uint32 chunk = 6; // Chunk index of this message
     
-    repeated alarm.v1.AlarmLogEntry alarms = 7; // a list of AlarmLogEntry's
+    repeated alarms.v1.AlarmLogEntry alarms = 7; // a list of AlarmLogEntry's
 }
