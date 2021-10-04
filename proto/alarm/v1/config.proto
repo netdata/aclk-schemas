@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package alarm.v1;
+package alarms.v1;
 
-option go_package = "alarm/v1;alarm";
+option go_package = "alarms/v1;alarms";
 
 message SendAlarmConfiguration{
     string config_hash = 1;
