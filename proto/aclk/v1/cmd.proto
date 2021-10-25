@@ -11,5 +11,6 @@ message ACLKDisconnectReq {
   uint64 reconnect_after_seconds = 1;
   bool permaban = 2;
   google.protobuf.Timestamp created_at = 3;
-  string reason = 4;
+  uint32 error_code = 4;
+  string error_description = 5;
 }
