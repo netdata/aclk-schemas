@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package aclk_cmd.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "aclk_cmdlib/v1;aclkcmd";
+
+// Sent by Cloud to instruct Agent to disconnect ASAP
+message ACLKDisconnectReq {
+  uint64 reconnect_after_seconds = 1;
+  bool permaban = 2;
+  google.protobuf.Timestamp created_at = 3;
+  uint32 error_code = 4;
+  string error_description = 5;
+}
