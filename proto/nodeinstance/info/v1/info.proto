@@ -32,7 +32,7 @@ message UpdateNodeInfo {
 
   bool child = 6;
 
-  MachineLearningInfo MLInfo = 8;
+  MachineLearningInfo ml_info = 8;
 }
 
 
