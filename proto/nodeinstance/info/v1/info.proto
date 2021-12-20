@@ -93,9 +93,9 @@ message MachineLearningInfo {
   // true when UpdateNodeInfo.child == true && parent runs ML for child
   bool ml_on_parent = 1;
 
-  // child has ML capability
+  // have ML capability
   bool ml_capable = 2;
 
-  // child runs ML
+  // runs ML functionality
   bool ml_enabled = 3;
 }
