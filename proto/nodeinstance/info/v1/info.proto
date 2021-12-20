@@ -90,8 +90,8 @@ message NodeInfo {
 }
 
 message MachineLearningInfo {
-  // true when UpdateNodeInfo.child == true && parent runs ML for child
-  bool ml_on_parent = 1;
+  // provides ML data
+  bool ml_accessible = 1;
 
   // have ML capability
   bool ml_capable = 2;
