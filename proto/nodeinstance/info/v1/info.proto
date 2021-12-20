@@ -90,12 +90,9 @@ message NodeInfo {
 }
 
 message MachineLearningInfo {
-  // provides ML data
-  bool ml_accessible = 1;
-
   // have ML capability
-  bool ml_capable = 2;
+  bool ml_capable = 1;
 
   // runs ML functionality
-  bool ml_enabled = 3;
+  bool ml_enabled = 2;
 }
