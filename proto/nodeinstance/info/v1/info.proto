@@ -31,6 +31,8 @@ message UpdateNodeInfo {
   string machine_guid = 5;
 
   bool child = 6;
+
+  MachineLearningInfo ml_info = 8;
 }
 
 
@@ -83,4 +85,14 @@ message NodeInfo {
   reserved 20;
 
   map<string, string> host_labels = 21;
+
+  MachineLearningInfo ml_info = 22;
+}
+
+message MachineLearningInfo {
+  // have ML capability
+  bool ml_capable = 1;
+
+  // runs ML functionality
+  bool ml_enabled = 2;
 }
