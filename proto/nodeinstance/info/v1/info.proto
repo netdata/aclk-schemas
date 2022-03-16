@@ -87,6 +87,8 @@ message NodeInfo {
   map<string, string> host_labels = 21;
 
   MachineLearningInfo ml_info = 22;
+
+  repeated string capabilities = 23;
 }
 
 message MachineLearningInfo {
