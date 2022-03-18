@@ -35,6 +35,11 @@ message UpdateNodeInfo {
   MachineLearningInfo ml_info = 8;
 }
 
+message NodeCapability {
+  string name = 1;
+  uint32 version = 2;
+}
+
 
 // NodeInfo describes the metadata of a node
 message NodeInfo {
@@ -88,7 +93,7 @@ message NodeInfo {
 
   MachineLearningInfo ml_info = 22;
 
-  repeated string capabilities = 23;
+  repeated NodeCapability capabilities = 23;
 }
 
 message MachineLearningInfo {
