@@ -4,6 +4,7 @@ option go_package = "node_instance/info/v1;nodeinstanceinfo";
 package nodeinstance.info.v1;
 
 import "google/protobuf/timestamp.proto";
+import "proto/aclk/v1/lib.proto";
 
 // UpdateNodeInfo (Command)
 //
@@ -23,6 +24,9 @@ message UpdateNodeInfo {
   string claim_id = 1;
 
   NodeInfo data = 2;
+  // to be obsoleted in future
+  // all new fields should go into node_info
+  // or node_instance_info respectively
 
   google.protobuf.Timestamp updated_at = 3;
 
@@ -33,13 +37,29 @@ message UpdateNodeInfo {
   bool child = 6;
 
   MachineLearningInfo ml_info = 8;
+  // to be obsoleted in far future
+
+  NodeInfo2 node_info = 9;
+  // node_info shows data about actual node
+  // for example feature (ml) for this
+  // node (child) might be available/enabled on the node (child) directly
+  // but not available trough the parent (node_instance)
+
+  NodeInstanceInfo node_instance_info = 10;
+  // info specific to the node_instance for this node available trough agent
+  // who sends this message.
+  // e.g. machine learning is enabled for this node and processing is done
+  // by the actual agent (parent). (child itself might or might not be
+  // ml ml_capable by itself (see node_info))
 }
 
-message NodeCapability {
-  string name = 1;
-  uint32 version = 2;
+message NodeInfo2 {
+  repeated  aclk_lib.v1.Capability capabilities = 1;
 }
 
+message NodeInstanceInfo {
+  repeated  aclk_lib.v1.Capability capabilities = 1;
+}
 
 // NodeInfo describes the metadata of a node
 message NodeInfo {
@@ -92,8 +112,6 @@ message NodeInfo {
   map<string, string> host_labels = 21;
 
   MachineLearningInfo ml_info = 22;
-
-  repeated NodeCapability capabilities = 23;
 }
 
 message MachineLearningInfo {

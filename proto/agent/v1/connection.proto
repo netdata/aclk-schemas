@@ -30,6 +30,8 @@ message UpdateAgentConnection {
 
     // How long the netdata agent was running until connection (only applicable when reachable=true)
     google.protobuf.Duration agent_uptime = 16;
+
+    aclk_lib.v1.Capability capabilities = 17;
 }
 
 message SendNodeInstances {
