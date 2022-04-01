@@ -5,6 +5,7 @@ package agent.v1;
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
+import "proto/aclk/v1/lib.proto";
 
 message UpdateAgentConnection {
     string claim_id = 1;
