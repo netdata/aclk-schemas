@@ -102,7 +102,8 @@ message NodeInfo {
 
   string custom_info = 17;
 
-  repeated string services = 18;
+  // [Obsolete] repeated string services = 18;
+  reserved 18;
 
   string machine_guid = 19;
 
@@ -112,6 +113,8 @@ message NodeInfo {
   map<string, string> host_labels = 21;
 
   MachineLearningInfo ml_info = 22;
+  
+  repeated string collectors = 23;
 }
 
 message MachineLearningInfo {
