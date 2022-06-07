@@ -22,3 +22,19 @@ message ChartDimensionUpdated {
   google.protobuf.Timestamp last_timestamp = 7;
   aclk_lib.v1.ACLKMessagePosition position = 8;
 }
+
+// ChartDimensionUpdatedV2 is a single event sent from the Agent to the Cloud containing chart dimension data.
+//
+// ChartDimensionUpdatedV2 messages are dispatched in bulk to the Cloud wrapped in ChartsAndDimensionsUpdated messages.
+message ChartDimensionUpdatedV2 {
+  string id = 1;
+  string chart_id = 2;
+  string node_id = 3;
+  string claim_id = 4;
+  string name = 5;
+  google.protobuf.Timestamp first_entry = 6;
+  // null value means that the dimension is currently collected (live)
+  google.protobuf.Timestamp last_entry = 7;
+  aclk_lib.v1.ACLKMessagePosition position = 8;
+  bool deleted = 9;
+}

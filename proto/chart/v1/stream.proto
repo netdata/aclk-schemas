@@ -65,6 +65,19 @@ message ChartsAndDimensionsUpdated {
   uint64 batch_id = 3;
 }
 
+// ChartsAndDimensionsUpdatedV2 is a wrapper Event (`fat` message) produced by the Agent, consumed by the Cloud.
+//
+// It potentially includes a collection of ChartInstanceUpdatedV2 messages and|or a collection of ChartDimensionUpdatedV2 messages.
+message ChartsAndDimensionsUpdatedV2 {
+  repeated chart.v1.ChartInstanceUpdatedV2 charts = 1;
+  repeated chart.v1.ChartDimensionUpdatedV2 dimensions = 2;
+  uint64 batch_id = 3;
+  string claim_id = 4;
+  string node_id = 5;
+  uint64 earliest_previous_sequence_id = 6;
+  uint64 last_sequence_id = 7;
+}
+
 // RetentionUpdated includes the available retentions (in seconds) of the dimensions - of a specific node instance and memory-mode -
 // on a per update_every level.
 // This message is sent over upon Agent Database rotation events to inform the Cloud in total about the newly updated data retentions
