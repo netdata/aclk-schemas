@@ -136,7 +136,7 @@ message MachineLearningInfo {
 //  On nodeinstance connect (after agent settles) and on detection of change of collectors
 //
 
-message collectorinfo {
+message CollectorInfo {
   string module = 1;
   string plugin = 2;
 }
@@ -144,5 +144,5 @@ message collectorinfo {
 message UpdateNodeCollectors {
   string claim_id = 1;
   string node_id = 2;
-  repeated colectorinfo collectors = 3;
+  repeated CollectorInfo collectors = 3;
 }
