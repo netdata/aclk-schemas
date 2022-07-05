@@ -11,19 +11,16 @@ message ContextUpdated {
     // context id
     string id = 1;
     uint64 version = 2;
-    // claim_id, node_id pair is used to identify the NodeInstance
-    string claim_id = 3;
-    string node_id = 4;
     // first_entry, last_entry are used to set the time boudaries of the context
-    google.protobuf.Timestamp first_entry = 5;
-    google.protobuf.Timestamp last_entry = 6;
+    google.protobuf.Timestamp first_entry = 3;
+    google.protobuf.Timestamp last_entry = 4;
     // deleted flag is used to signal a context deletion
-    bool deleted = 7;
+    bool deleted = 5;
     // context config fields
-    string chart_type = 8;
-    string title = 9;
-    uint32 priority = 10;
-    string units = 11;
+    string chart_type = 6;
+    string title = 7;
+    uint32 priority = 8;
+    string units = 9;
 }
 
 // ContextsUpdated is an Event produced by the Agent, consumed by the Cloud.
