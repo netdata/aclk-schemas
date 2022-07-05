@@ -114,7 +114,8 @@ message NodeInfo {
 
   MachineLearningInfo ml_info = 22;
   
-  repeated string collectors = 23;
+  // [Obsolete] repeated string collectors = 23;
+  reserved 23;
 }
 
 message MachineLearningInfo {
@@ -123,4 +124,25 @@ message MachineLearningInfo {
 
   // runs ML functionality
   bool ml_enabled = 2;
+}
+
+// UpdateNodeCollectors (Command)
+//
+// key: `claim_id,node_id`
+//
+// Publishers: `netdata/agent`
+//
+// When:
+//  On nodeinstance connect (after agent settles) and on detection of change of collectors
+//
+
+message CollectorInfo {
+  string module = 1;
+  string plugin = 2;
+}
+
+message UpdateNodeCollectors {
+  string claim_id = 1;
+  string node_id = 2;
+  repeated CollectorInfo collectors = 3;
 }
