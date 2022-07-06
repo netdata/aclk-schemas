@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package context.v1;
+
+option go_package = "context/v1;context";
+
+// UpdateContextConfigs command contains the list of missing context configs from the cloud to agent
+message UpdateContextConfigs {
+  // claim_id, node_id pair is used to identify the Node Instance
+  string claim_id = 1;
+  string node_id = 2;
+  // list of config hashes missing from cloud and requested from the agent
+  repeated string config_hashes = 3;
+}
+
+message ContextConfigsUpdated {
+  repeated ContextConfigUpdated configs = 1;
+}
+
+message ContextConfigUpdated {
+  string config_hash = 1;
+  string title = 2;
+  uint64 priority = 3;
+  string chart_type = 4;
+  string units = 5;
+}
