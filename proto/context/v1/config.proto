@@ -4,15 +4,14 @@ package context.v1;
 
 option go_package = "context/v1;context";
 
-// UpdateContextConfigs command contains the list of missing context configs from the cloud to agent
+// UpdateContextConfigs is Command sent from Cloud to Agent.
+// it requests a list of missing context configs.
 message UpdateContextConfigs {
-  // claim_id, node_id pair is used to identify the Node Instance
-  string claim_id = 1;
-  string node_id = 2;
-  // list of config hashes missing from cloud and requested from the agent
   repeated string config_hashes = 3;
 }
 
+// ContextConfigsUpdated is an Event sent from Agent to Cloud.
+// It contains a list of configs.
 message ContextConfigsUpdated {
   repeated ContextConfigUpdated configs = 1;
 }
