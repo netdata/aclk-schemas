@@ -6,10 +6,22 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "context/v1;context";
 
+// ContextsUpdated is an Event produced by the Agent, consumed by the Cloud.
+//
+// it contains a collection of ContextUpdated messages for a specific NodeInstance.
+message ContextsUpdated {
+    // contexUpdates contains the collection of context updates
+    repeated ContextUpdated contextUpdates = 1;
+    // claim_id, node_id pair identifies the node instance
+    string claim_id = 2;
+    string node_id = 3;
+}
+
 // ContextUpdated contains context data.
 message ContextUpdated {
     // context id
     string id = 1;
+    // context version is an epoch in milliseconds.
     uint64 version = 2;
     // first_entry, last_entry are used to set the time boudaries of the context
     google.protobuf.Timestamp first_entry = 3;
@@ -20,17 +32,17 @@ message ContextUpdated {
     string config_hash = 6;
 }
 
-// ContextsUpdated is an Event produced by the Agent, consumed by the Cloud.
+// ContextsSnapshot is an Event produced by the Agent, consumed by the Cloud.
 //
-// it contains a collection of ContextUpdated messages for a specific NodeInstance.
-message ContextsUpdated {
+// it contains a snapshot of the existing contexts on the Agent.
+// snapshot version and context versions are epochs in milliseconds so we can
+// identify if a context version was generated after a specific snapshot.
+message ContextsSnapshot {
     // contexUpdates contains the collection of context updates
-    repeated ContextUpdated contextUpdates = 1;
+    repeated ContextUpdated contexts = 1;
     // claim_id, node_id pair identifies the node instance
     string claim_id = 2;
     string node_id = 3;
-    // reconciliation flag is used to tell the cloud this message contains the full list of
-    // contexts existing in the agent, so the cloud should (soft)delete any additional one
-    // existing in the cloud but not contained in this message.
-    bool reconciliation = 4;
+    // version is an epoch in milliseconds
+    uint64 version = 4;
 }
