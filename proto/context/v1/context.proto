@@ -38,7 +38,7 @@ message ContextUpdated {
 // snapshot version and context versions are epochs in milliseconds so we can
 // identify if a context version was generated after a specific snapshot.
 message ContextsSnapshot {
-    // contexUpdates contains the collection of context updates
+    // contexts contains the collection of existing contexts
     repeated ContextUpdated contexts = 1;
     // claim_id, node_id pair identifies the node instance
     string claim_id = 2;
