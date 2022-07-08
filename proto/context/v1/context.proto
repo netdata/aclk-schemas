@@ -34,11 +34,10 @@ message ContextUpdated {
     // deleted flag is used to signal a context deletion
     bool deleted = 5;
     // context configuration fields
-    string config_hash = 6;
-    string title = 7;
-    uint64 priority = 8;
-    string chart_type = 9;
-    string units = 10;
+    string title = 6;
+    uint64 priority = 7;
+    string chart_type = 8;
+    string units = 9;
 }
 
 // ContextsSnapshot is an Event produced by the Agent, consumed by the Cloud.
