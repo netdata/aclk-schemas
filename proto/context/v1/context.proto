@@ -15,27 +15,38 @@ message ContextsUpdated {
     // claim_id, node_id pair identifies the node instance
     string claim_id = 2;
     string node_id = 3;
+    // version_hash is the contexts version_hash result the cloud should
+    // get after applying this message updates.
+    uint64 version_hash = 4;
+    // it's and always increasing number to compare
+    // which version_hash is more recent between multiple
+    // ContextsUpdated messages. Bigger means more recent.
+    uint64 created_at = 5;
 }
 
 // ContextUpdated contains context data.
 message ContextUpdated {
     // context id
     string id = 1;
-    // context version is an epoch in milliseconds.
+    // context version is an epoch in seconds.
     uint64 version = 2;
-    // first_entry, last_entry are used to set the time boudaries of the context
-    google.protobuf.Timestamp first_entry = 3;
-    google.protobuf.Timestamp last_entry = 4;
+    // first_entry, last_entry are epochs in seconds
+    uint64 first_entry = 3;
+    uint64 last_entry = 4;
     // deleted flag is used to signal a context deletion
     bool deleted = 5;
-    // context config hash
+    // context configuration fields
     string config_hash = 6;
+    string title = 7;
+    uint64 priority = 8;
+    string chart_type = 9;
+    string units = 10;
 }
 
 // ContextsSnapshot is an Event produced by the Agent, consumed by the Cloud.
 //
 // it contains a snapshot of the existing contexts on the Agent.
-// snapshot version and context versions are epochs in milliseconds so we can
+// snapshot version and context versions are epochs in seconds so we can
 // identify if a context version was generated after a specific snapshot.
 message ContextsSnapshot {
     // contexts contains the collection of existing contexts
@@ -43,6 +54,6 @@ message ContextsSnapshot {
     // claim_id, node_id pair identifies the node instance
     string claim_id = 2;
     string node_id = 3;
-    // version is an epoch in milliseconds
+    // version is an epoch in seconds
     uint64 version = 4;
 }
