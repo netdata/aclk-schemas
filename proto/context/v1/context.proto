@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package context.v1;
 
-import "google/protobuf/timestamp.proto";
-
 option go_package = "context/v1;context";
 
 // ContextsUpdated is an Event produced by the Agent, consumed by the Cloud.
