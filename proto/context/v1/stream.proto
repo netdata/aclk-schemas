@@ -4,11 +4,10 @@ package context.v1;
 
 option go_package = "context/v1;context";
 
-// StartStreamingContexts is a Command produced by the Cloud, consumed by the Agent.
+// ContextsCheckpoint is a Command produced by the Cloud, consumed by the Agent.
 //
-// It instructs the Agent to start sending ContextsUpdated messages for a NodeInstance
-// after the last sequence_id that the Cloud has successfully ingested.
-message StartStreamingContexts {
+// It informs the Agent the contexts' version_hash that the cloud has for a specific NodeInstance.
+message ContextsCheckpoint {
     // claim_id, node_id pair is used to identify the NodeInstance.
     string claim_id = 1;
     string node_id = 2;
