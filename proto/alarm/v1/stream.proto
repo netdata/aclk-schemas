@@ -86,6 +86,9 @@ message AlarmLogEntry {
 
     // Rendered_info 
     string rendered_info = 28;
+    
+    // The chart's context field
+    string chart_context = 29;
 }
 
 enum AlarmStatus {
