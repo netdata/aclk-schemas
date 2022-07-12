@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package context.v1;
+
+option go_package = "context/v1;context";
+
+// ContextsUpdated is an Event produced by the Agent, consumed by the Cloud.
+//
+// it contains a collection of ContextUpdated messages for a specific NodeInstance.
+message ContextsUpdated {
+    // contexUpdates contains the collection of context updates
+    repeated ContextUpdated contextUpdates = 1;
+    // claim_id, node_id pair identifies the node instance
+    string claim_id = 2;
+    string node_id = 3;
+    // version_hash is the contexts version_hash result the cloud should
+    // get after applying this message updates.
+    uint64 version_hash = 4;
+    // it's and always increasing number to compare
+    // which version_hash is more recent between multiple
+    // ContextsUpdated messages. Bigger means more recent.
+    uint64 created_at = 5;
+}
+
+// ContextUpdated contains context data.
+message ContextUpdated {
+    // context id
+    string id = 1;
+    // context version is an epoch in seconds.
+    uint64 version = 2;
+    // first_entry, last_entry are epochs in seconds
+    uint64 first_entry = 3;
+    uint64 last_entry = 4;
+    // deleted flag is used to signal a context deletion
+    bool deleted = 5;
+    // context configuration fields
+    string title = 6;
+    uint64 priority = 7;
+    string chart_type = 8;
+    string units = 9;
+}
+
+// ContextsSnapshot is an Event produced by the Agent, consumed by the Cloud.
+//
+// it contains a snapshot of the existing contexts on the Agent.
+// snapshot version and context versions are epochs in seconds so we can
+// identify if a context version was generated after a specific snapshot.
+message ContextsSnapshot {
+    // contexts contains the collection of existing contexts
+    repeated ContextUpdated contexts = 1;
+    // claim_id, node_id pair identifies the node instance
+    string claim_id = 2;
+    string node_id = 3;
+    // version is an epoch in seconds
+    uint64 version = 4;
+}

@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package context.v1;
+
+option go_package = "context/v1;context";
+
+// ContextsCheckpoint is a Command produced by the Cloud, consumed by the Agent.
+//
+// It informs the Agent the contexts' version_hash that the cloud has for a specific NodeInstance.
+message ContextsCheckpoint {
+    // claim_id, node_id pair is used to identify the NodeInstance.
+    string claim_id = 1;
+    string node_id = 2;
+    // version_hash tells the Agent the current version hash for the contexts received
+    // if the version hash calculated by the Agent is different, Agent will request
+    // to re-sync all contexts.
+    uint64 version_hash= 3;
+}
+
+// StopStreamingContexts is a Command produced by the Cloud, consumed by the Agent.
+//
+// It instructs the Agent to stop sending ContextsUpdated messages for a NodeInstance
+// due to a reason.
+message StopStreamingContexts {
+    // claim_id, node_id pair is used to identify the node instance
+    string claim_id = 1;
+    string node_id = 2;
+    
+    StopStreamingContextsReason reason = 3;
+}
+
+enum StopStreamingContextsReason {
+  RATE_LIMIT_EXCEEDED = 0;
+}
