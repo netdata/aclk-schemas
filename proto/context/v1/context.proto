@@ -38,6 +38,7 @@ message ContextUpdated {
     uint64 priority = 7;
     string chart_type = 8;
     string units = 9;
+    string family = 10;
 }
 
 // ContextsSnapshot is an Event produced by the Agent, consumed by the Cloud.
