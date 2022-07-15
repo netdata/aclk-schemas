@@ -33,5 +33,5 @@ message UpdateNodeInstanceConnection {
     int32 hops = 9;
 
     // capabilities of node instance NOT the NODE or agent!!!
-    aclk_lib.v1.Capability capabilities = 10;
+    repeated aclk_lib.v1.Capability capabilities = 10;
 }
