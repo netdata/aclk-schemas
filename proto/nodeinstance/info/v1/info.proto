@@ -45,9 +45,12 @@ message UpdateNodeInfo {
   // node (child) might be available/enabled on the node (child) directly
   // but not available trough the parent (node_instance)
 
-  //NodeInstanceInfo node_instance_info = 10;
-  // moved to UpdateNodeInstanceConnection
-  reserved 10;
+  NodeInstanceInfo node_instance_info = 10;
+  // info specific to the node_instance for this node available trough agent
+  // who sends this message.
+  // e.g. machine learning is enabled for this node and processing is done
+  // by the actual agent (parent). (child itself might or might not be
+  // ml ml_capable by itself (see node_info))
 }
 
 message NodeInfo2 {
