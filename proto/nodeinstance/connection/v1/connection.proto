@@ -4,6 +4,7 @@ option go_package = "nodeinstance/connection/v1;nodeinstanceconnection";
 package nodeinstance.v1;
 
 import "google/protobuf/timestamp.proto";
+import "proto/aclk/v1/lib.proto";
 
 message UpdateNodeInstanceConnection {
     string claim_id = 1;
@@ -30,4 +31,7 @@ message UpdateNodeInstanceConnection {
     // hops is the number of streaming hops between collection of node data
     // and the claimed agent. Zero if no streaming is involved.
     int32 hops = 9;
+
+    // capabilities of node instance NOT the NODE or agent!!!
+    aclk_lib.v1.Capability capabilities = 10;
 }
