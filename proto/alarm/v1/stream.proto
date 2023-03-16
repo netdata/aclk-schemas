@@ -56,8 +56,8 @@ message AlarmLogEntry {
     string chart = 3;
     string name = 4;
     string family = 5;
-    uint64 batch_id = 6;
-    uint64 sequence_id = 7;
+    uint64 batch_id = 6 [deprecated=true];
+    uint64 sequence_id = 7 [deprecated=true];
     uint64 when = 8;
 
     string config_hash = 9;
