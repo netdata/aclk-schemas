@@ -115,18 +115,19 @@ enum AlarmStatus {
 message SendAlarmSnapshot {
     string node_id = 1;
     string claim_id = 2;
-    uint64 snapshot_id = 3;
+    uint64 snapshot_id = 3 [deprecated=true];
     uint64 sequence_id = 4 [deprecated=true];
+    string snapshot_uuid = 5;
 }
 
 // Agent responds with AlarmSnapshot to a SendAlarmSnapshot message
 message AlarmSnapshot{
     string node_id = 1;
     string claim_id = 2;
-    uint64 snapshot_id = 3; // Same id from SendAlarmSnapshot message
+    uint64 snapshot_id = 3 [deprecated=true]; // Same id from SendAlarmSnapshot message
     uint32 chunks = 4; // In case full snapshot can not fit in a single message, indicates the total number of messages for this snapshot_id
     uint32 chunk_size = 5; // How many alerts this chunk contains
     uint32 chunk = 6; // Chunk index of this message
-
     repeated AlarmLogEntry alarms = 7; // a list of AlarmLogEntry's
+    string snapshot_uuid = 8;
 }
