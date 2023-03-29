@@ -1,0 +1,22 @@
+syntax = "proto3";
+option go_package = "agent/v1;agent";
+
+package agent.v1;
+
+import "google/protobuf/timestamp.proto";
+import "proto/aclk/v1/lib.proto";
+
+message CancelPendingRequest {
+    // must match the ID sent with the request originally made
+    // other than this agent will not put conditions on it
+    // and will treat it as opaque string (it simply has to match)
+    // However this doesn't mean there are no coditions on the id
+    // made on the request side
+    string request_id = 1;
+
+    // time when the cancellation request was generated
+    google.protobuf.Timestamp timestamp = 2;
+
+    // optional might be usefull for debugging purposes
+    string trace_id = 3;
+}
