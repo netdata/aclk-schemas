@@ -36,6 +36,8 @@ message StartAlarmStreaming {
     string node_id = 1;
     uint64 batch_id = 2 [deprecated=true];
     uint64 start_sequnce_id = 3 [deprecated=true];
+    // Instructs the agent to sync all configured alarms
+    bool resets = 4;
 }
 
 message SendAlarmCheckpoint {
