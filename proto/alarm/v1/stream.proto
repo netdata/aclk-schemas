@@ -32,11 +32,23 @@ enum AlarmLogStatus {
     ALARM_LOG_STATUS_IDLE = 2;
 }
 
-
 message StartAlarmStreaming {
     string node_id = 1;
-    uint64 batch_id = 2;
-    uint64 start_sequnce_id = 3;
+    uint64 batch_id = 2 [deprecated=true];
+    uint64 start_sequnce_id = 3 [deprecated=true];
+    // Instructs the agent to sync all configured alarms
+    bool resets = 4;
+}
+
+message SendAlarmCheckpoint {
+    string node_id = 1;
+    string claim_id = 2;
+}
+
+message AlarmCheckpoint {
+    string node_id = 1;
+    string claim_id = 2;
+    bytes checksum = 3;
 }
 
 message AlarmLogEntry {
@@ -46,8 +58,8 @@ message AlarmLogEntry {
     string chart = 3;
     string name = 4;
     string family = 5;
-    uint64 batch_id = 6;
-    uint64 sequence_id = 7;
+    uint64 batch_id = 6 [deprecated=true];
+    uint64 sequence_id = 7 [deprecated=true];
     uint64 when = 8;
 
     string config_hash = 9;
@@ -56,7 +68,7 @@ message AlarmLogEntry {
     string timezone = 11;
 
     // Paths that can be custom for the same alarm, but depend on installation path for each user. Should be here or in config ?
-    string exec_path = 12; 
+    string exec_path = 12;
     string conf_source = 13;
     string command = 14;
 
@@ -77,16 +89,16 @@ message AlarmLogEntry {
     // Check if string values are needed
     string value_string = 23;
     string old_value_string = 24;
-    
+
     double value = 25;
     double old_value = 26;
 
     // Updated alarm entry, when the status of the alarm has been updated by a later entry
     bool updated = 27;
 
-    // Rendered_info 
+    // Rendered_info
     string rendered_info = 28;
-    
+
     // The chart's context field
     string chart_context = 29;
 }
@@ -105,18 +117,19 @@ enum AlarmStatus {
 message SendAlarmSnapshot {
     string node_id = 1;
     string claim_id = 2;
-    uint64 snapshot_id = 3;
-    uint64 sequence_id = 4; // indicates the last sequence_id (inclusive) of message processed by cloud
+    uint64 snapshot_id = 3 [deprecated=true];
+    uint64 sequence_id = 4 [deprecated=true];
+    string snapshot_uuid = 5;
 }
 
 // Agent responds with AlarmSnapshot to a SendAlarmSnapshot message
 message AlarmSnapshot{
     string node_id = 1;
     string claim_id = 2;
-    uint64 snapshot_id = 3; // Same id from SendAlarmSnapshot message
+    uint64 snapshot_id = 3 [deprecated=true]; // Same id from SendAlarmSnapshot message
     uint32 chunks = 4; // In case full snapshot can not fit in a single message, indicates the total number of messages for this snapshot_id
     uint32 chunk_size = 5; // How many alerts this chunk contains
     uint32 chunk = 6; // Chunk index of this message
-    
     repeated AlarmLogEntry alarms = 7; // a list of AlarmLogEntry's
+    string snapshot_uuid = 8;
 }
