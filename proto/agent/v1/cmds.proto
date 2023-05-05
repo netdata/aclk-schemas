@@ -58,7 +58,7 @@ message AgentCommandAck {
     string message_id = 1;
     // the timestamp in UNIX milliseconds when the Agent created this AgentCommandAck message
     // example: `1682594711123`
-    uint64 createdAt = 2;
+    uint64 created_at = 2;
     // integer revealing the progress of completion to serve the AgentCommand with the given message_id
     // example: `25`
     uint32 progress_percent = 3;
