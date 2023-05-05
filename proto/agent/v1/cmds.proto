@@ -20,3 +20,69 @@ message CancelPendingRequest {
     // optional might be usefull for debugging purposes
     string trace_id = 3;
 }
+
+// AgentCommand is sent from the Cloud to the Agent at `/agent/{claim_id}/inbound/v1/cmd/AgentCommand`
+// the message includes the resource that the Cloud needs to GET from the Agent HTTP API along with related metadata
+message AgentCommand {
+    // currently statically set to `http`
+    string type = 1;
+    // currently statically set to `2`
+    uint32 version = 2;
+    // the topic to which the Cloud awaits for the AgentCommandResponse.
+    // example: `/svc/agent-data-ctrl/2d7b7edd-561e-4aec-8ac1-466a585520f5/resp`
+    string callback_topic = 3;
+    // the topic to which the Cloud awaits for the AgentCommandAck.
+    // example: `/svc/agent-data-ctrl/2d7b7edd-561e-4aec-8ac1-466a585520f5/resp`
+    string ack_topic = 4;
+    // unique identifier for the AgentCommand
+    // example: `617038b3-7c2a-4617-a78f-ab37bd820198`
+    string message_id = 5;
+    // defined in milliseconds, the time the Agent has to respond before Cloud
+    // considering the request as timed-out
+    // example: `60000`
+    uint64 timeout = 6;
+    // defined in milliseconds, the time the Agent has to send back to the Cloud
+    // an AgentCommandAck message signaling that is still working on the request
+    // example: `3000`
+    uint64 ack_timeout = 7;
+    // the Agent URL to be called
+    // example: `/api/v2/data?query_params_go_here`
+    string url = 8;
+}
+
+// AgentCommandAck is sent from the Agent to the Cloud at predefined intervals (`AgentCommand.ack_timeout`) to predefined topic (`AgentCommand.ack_topic`)
+// signaling that the Agent is still working to serve an AgentCommand (referenced by the message_id) that the Cloud sent
+message AgentCommandAck {
+    // unique identifier to reference AgentCommand on which the Agent is still working on serving
+    // example: `617038b3-7c2a-4617-a78f-ab37bd820198`
+    string message_id = 1;
+    // the timestamp in UNIX milliseconds when the Agent created this AgentCommandAck message
+    // example: `1682594711123`
+    uint64 createdAt = 2;
+    // integer revealing the progress of completion to serve the AgentCommand with the given message_id
+    // example: `25`
+    uint32 progress_percent = 3;
+}
+
+// AgentCommandResponse is sent from the Agent to the Cloud at `/agent/{claim_id}/inbound/v1/cmd/AgentCommand`
+// the message includes the resource that the Cloud needs to GET from the Agent HTTP API along with related metadata
+message AgentCommandResponse {
+    // currently statically set to `http`
+    string type = 1;
+    // currently statically set to `2`
+    uint32 version = 2;
+    // unique identifier for the AgentCommand
+    // example: `617038b3-7c2a-4617-a78f-ab37bd820198`
+    string message_id = 3;
+    // the (http) status code of the Agent's API response
+    // example: `200`
+    uint32 status_code = 4;
+    // the (http) response body the Agent's API returned
+    bytes response = 5;
+    // the Agent's timestamp in UNIX microseconds (aka`timestamp-offset-usec`)
+    uint64 timestamp = 6;
+    // the timestamp when the Agent received the AgentCommand for execution in UNIX microseconds (aka `t-rx`)
+    uint64 received_at = 7;
+    // the amount of microseconds the Agent needed to execute the HTTP request of the AgentCommand(aka `t-exec`)
+    uint64 exec_time = 8;
+}
