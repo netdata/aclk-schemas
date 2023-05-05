@@ -45,9 +45,9 @@ message AgentCommand {
     // an AgentCommandAck message signaling that is still working on the request
     // example: `3000`
     uint64 ack_timeout = 7;
-    // the Agent URL to be called
+    // the requested Agent resource
     // example: `/api/v2/data?query_params_go_here`
-    string url = 8;
+    string resource = 8;
 }
 
 // AgentCommandAck is sent from the Agent to the Cloud at predefined intervals (`AgentCommand.ack_timeout`) to predefined topic (`AgentCommand.ack_topic`)
