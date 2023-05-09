@@ -67,22 +67,18 @@ message AgentCommandAck {
 // AgentCommandResponse is sent from the Agent to the Cloud at `/agent/{claim_id}/inbound/v1/cmd/AgentCommand`
 // the message includes the resource that the Cloud needs to GET from the Agent HTTP API along with related metadata
 message AgentCommandResponse {
-    // currently statically set to `http`
-    string type = 1;
-    // currently statically set to `2`
-    uint32 version = 2;
     // unique identifier for the AgentCommand
     // example: `617038b3-7c2a-4617-a78f-ab37bd820198`
-    string message_id = 3;
+    string message_id = 1;
     // the (http) status code of the Agent's API response
     // example: `200`
-    uint32 status_code = 4;
+    uint32 status_code = 2;
     // the (http) response body the Agent's API returned
-    bytes response = 5;
+    bytes response = 3;
     // the Agent's timestamp in UNIX microseconds (aka`timestamp-offset-usec`)
-    uint64 timestamp = 6;
+    uint64 timestamp = 4;
     // the timestamp when the Agent received the AgentCommand for execution in UNIX microseconds (aka `t-rx`)
-    uint64 received_at = 7;
+    uint64 received_at = 5;
     // the amount of microseconds the Agent needed to execute the HTTP request of the AgentCommand(aka `t-exec`)
-    uint64 exec_time = 8;
+    uint64 exec_time = 6;
 }
