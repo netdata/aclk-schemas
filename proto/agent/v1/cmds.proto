@@ -68,7 +68,7 @@ message AgentCommandResponse {
     // the (http) status code of the Agent's API response
     // example: `200`
     uint32 status_code = 2;
-    // the (http) response body the Agent's API returned
+    // the dumped raw (http) response the Agent's API returned
     bytes response = 3;
     // the Agent's timestamp (aka legacy `timestamp`)
     google.protobuf.Timestamp timestamp = 4;
