@@ -103,10 +103,10 @@ message AlarmLogEntry {
     string chart_context = 29;
     
     // Counter of alert transitions for this alert chain
-    uint64 alert_event_id = 30;
+    uint64 event_id = 30;
     
     // A unique uuid for this alert event
-    string alert_event_hash = 31;
+    string transition_id = 31;
 }
 
 enum AlarmStatus {
