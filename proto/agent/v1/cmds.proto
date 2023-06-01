@@ -10,13 +10,70 @@ message CancelPendingRequest {
     // must match the ID sent with the request originally made
     // other than this agent will not put conditions on it
     // and will treat it as opaque string (it simply has to match)
-    // However this doesn't mean there are no coditions on the id
+    // However this doesn't mean there are no conditions on the id
     // made on the request side
     string request_id = 1;
 
     // time when the cancellation request was generated
     google.protobuf.Timestamp timestamp = 2;
 
-    // optional might be usefull for debugging purposes
+    // optional might be useful for debugging purposes
     string trace_id = 3;
+}
+
+// AgentCommand is sent from the Cloud to the Agent at `/agent/{claim_id}/inbound/v1/cmd/AgentCommand`
+// the message includes the resource that the Cloud needs to GET from the Agent HTTP API along with related metadata
+message AgentCommand {
+    // the topic to which the Cloud awaits for the AgentCommandResponse.
+    // example: `/svc/agent-data-ctrl/2d7b7edd-561e-4aec-8ac1-466a585520f5/resp`
+    string callback_topic = 1;
+    // the topic to which the Cloud awaits for the AgentCommandAck.
+    // example: `/svc/agent-data-ctrl/2d7b7edd-561e-4aec-8ac1-466a585520f5/resp`
+    string ack_topic = 2;
+    // unique identifier for the AgentCommand
+    // example: `617038b3-7c2a-4617-a78f-ab37bd820198`
+    string message_id = 3;
+    // defined in milliseconds, the time the Agent has to respond before Cloud
+    // considering the request as timed-out
+    // example: `60000`
+    uint64 timeout = 4;
+    // defined in milliseconds, the time the Agent has to send back to the Cloud
+    // an AgentCommandAck message signaling that is still working on the request
+    // example: `3000`
+    uint64 ack_timeout = 5;
+    // the requested Agent resource
+    // example: `/api/v2/data?query_params_go_here`
+    string resource = 6;
+}
+
+// AgentCommandAck is sent from the Agent to the Cloud at predefined intervals (`AgentCommand.ack_timeout`) to predefined topic (`AgentCommand.ack_topic`)
+// signaling that the Agent is still working to serve an AgentCommand (referenced by the message_id) that the Cloud sent
+message AgentCommandAck {
+    // unique identifier to reference AgentCommand on which the Agent is still working on serving
+    // example: `617038b3-7c2a-4617-a78f-ab37bd820198`
+    string message_id = 1;
+    // the timestamp when the Agent created this AgentCommandAck message
+    google.protobuf.Timestamp created_at = 2;
+    // integer revealing the progress of completion to serve the AgentCommand with the given message_id
+    // example: `25`
+    uint32 progress_percent = 3;
+}
+
+// AgentCommandResponse is sent from the Agent to the Cloud at `/agent/{claim_id}/inbound/v1/cmd/AgentCommand`
+// the message includes the resource that the Cloud needs to GET from the Agent HTTP API along with related metadata
+message AgentCommandResponse {
+    // unique identifier for the AgentCommand
+    // example: `617038b3-7c2a-4617-a78f-ab37bd820198`
+    string message_id = 1;
+    // the (http) status code of the Agent's API response
+    // example: `200`
+    uint32 status_code = 2;
+    // the dumped raw (http) response the Agent's API returned
+    bytes response = 3;
+    // the Agent's timestamp (aka legacy `timestamp`)
+    google.protobuf.Timestamp timestamp = 4;
+    // the timestamp when the Agent received the AgentCommand for execution (aka legacy `t-rx`)
+    google.protobuf.Timestamp received_at = 5;
+    // the amount of microseconds the Agent needed to execute the HTTP request of the AgentCommand (aka legacy`t-exec`)
+    uint64 exec_time = 6;
 }
