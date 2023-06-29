@@ -55,4 +55,6 @@ message AlarmConfiguration{
     string p_db_lookup_method = 31;
     string p_db_lookup_options = 32;
     int32 p_update_every = 33;
+
+    string chart_labels = 34;
 }
