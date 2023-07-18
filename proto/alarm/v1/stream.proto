@@ -55,7 +55,7 @@ message AlarmLogEntry {
     string node_id = 1;
     string claim_id = 2;
 
-    // The chart's name field
+    // The chart's id field
     string chart = 3;
     string name = 4;
     string family = 5;
@@ -109,8 +109,8 @@ message AlarmLogEntry {
     // A unique uuid for this alert event
     string transition_id = 31;
 
-    // The chart's id field
-    string chart_id = 32;
+    // The chart's name field
+    string chart_name = 32;
 }
 
 enum AlarmStatus {
