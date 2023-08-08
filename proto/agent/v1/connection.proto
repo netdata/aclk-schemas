@@ -37,6 +37,7 @@ message UpdateAgentConnection {
 
 message SendNodeInstances {
     string claim_id = 1;
+    Config config = 2;
 }
 
 // ConnectionUpdateSource is to determine whether the connection update was issued 
@@ -49,4 +50,8 @@ enum ConnectionUpdateSource {
     CONNECTION_UPDATE_SOURCE_LWT = 2;
     // CONNECTION_UPDATE_SOURCE_HEURISTIC A cloud generated message to sanitize incorrect internal state
     CONNECTION_UPDATE_SOURCE_HEURISTIC = 3;
+}
+
+message Config {
+    bool bearer_protection = 1;
 }
