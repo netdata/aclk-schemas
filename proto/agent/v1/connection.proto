@@ -54,4 +54,6 @@ enum ConnectionUpdateSource {
 
 message Config {
     bool bearer_protection = 1;
+    bool cloud_only_notifications = 2;
+    bool universal_dashboards = 3;
 }
