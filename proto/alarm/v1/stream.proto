@@ -111,6 +111,9 @@ message AlarmLogEntry {
 
     // The chart's name field
     string chart_name = 32;
+
+    // A rendered summary field
+    string summary = 33;
 }
 
 enum AlarmStatus {
