@@ -58,7 +58,7 @@ message AlarmLogEntry {
     // The chart's id field
     string chart = 3;
     string name = 4;
-    string family = 5;
+    string family = 5 [deprecated=true];
     uint64 batch_id = 6 [deprecated=true];
     uint64 sequence_id = 7 [deprecated=true];
     uint64 when = 8;
