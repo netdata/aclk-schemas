@@ -55,13 +55,13 @@ enum ConnectionUpdateSource {
 }
 
 message AgentConfig {
-    ConfigOption dashboards = 1;
-    ConfigOption alert_notifications = 2;
+    string dashboards = 1;
+    string alert_notifications = 2;
 }
 
 message CloudConfig {
-    ConfigOption dashboards = 1;
-    ConfigOption alert_notifications = 2;
+    string dashboards = 1;
+    string alert_notifications = 2;
 }
 
 message Config {
@@ -70,17 +70,4 @@ message Config {
     bool universal_dashboards = 3 [deprecated=true];
     AgentConfig agent_config = 4;
     CloudConfig cloud_config = 5;
-}
-
-// ConfigOption enumerates the potential values that a configuration property can assume.
-// In certain cases, only a subset of these options may be relevant to a particular property.
-// The available options for each configuration property are directly managed within the code.
-enum ConfigOption {
-    // CONFIG_PROPERTY_UNSPECIFIED acts as default value for protobuf and is never specified
-    CONFIG_PROPERTY_UNSPECIFIED = 0;
-    CONFIG_PROPERTY_DISABLED = 1;
-    CONFIG_PROPERTY_ENABLED = 2;
-    CONFIG_PROPERTY_OPEN = 3;
-    CONFIG_PROPERTY_SENSITIVE_DATA = 4;
-    CONFIG_PROPERTY_CLOUD_SSO = 5;
 }
