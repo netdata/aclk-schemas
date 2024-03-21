@@ -65,9 +65,7 @@ message CloudConfig {
 }
 
 message Config {
-    bool bearer_protection = 1 [deprecated=true];
-    bool cloud_only_notifications = 2 [deprecated=true];
-    bool universal_dashboards = 3 [deprecated=true];
+    reserved 1 to 3;
     AgentConfig agent_config = 4;
     CloudConfig cloud_config = 5;
 }
