@@ -38,6 +38,8 @@ message UpdateAgentConnection {
 message SendNodeInstances {
     string claim_id = 1;
     Config config = 2;
+    // The ID of the space where this agent is claimed.
+    string space_id = 3;
 }
 
 // ConnectionUpdateSource is to determine whether the connection update was issued 
@@ -52,8 +54,33 @@ enum ConnectionUpdateSource {
     CONNECTION_UPDATE_SOURCE_HEURISTIC = 3;
 }
 
+message AgentConfig {
+    ConfigOption dashboards = 1;
+    ConfigOption alert_notifications = 2;
+}
+
+message CloudConfig {
+    ConfigOption dashboards = 1;
+    ConfigOption alert_notifications = 2;
+}
+
 message Config {
-    bool bearer_protection = 1;
-    bool cloud_only_notifications = 2;
-    bool universal_dashboards = 3;
+    bool bearer_protection = 1 [deprecated=true];
+    bool cloud_only_notifications = 2 [deprecated=true];
+    bool universal_dashboards = 3 [deprecated=true];
+    AgentConfig agent_config = 4;
+    CloudConfig cloud_config = 5;
+}
+
+// ConfigOption enumerates the potential values that a configuration property can assume.
+// In certain cases, only a subset of these options may be relevant to a particular property.
+// The available options for each configuration property are directly managed within the code.
+enum ConfigOption {
+    // CONFIG_PROPERTY_UNSPECIFIED acts as default value for protobuf and is never specified
+    CONFIG_PROPERTY_UNSPECIFIED = 0;
+    CONFIG_PROPERTY_DISABLED = 1;
+    CONFIG_PROPERTY_ENABLED = 2;
+    CONFIG_PROPERTY_OPEN = 3;
+    CONFIG_PROPERTY_SENSITIVE_DATA = 4;
+    CONFIG_PROPERTY_CLOUD_SSO = 5;
 }
