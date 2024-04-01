@@ -38,6 +38,8 @@ message UpdateAgentConnection {
 message SendNodeInstances {
     string claim_id = 1;
     Config config = 2;
+    // The ID of the space where this agent is claimed.
+    string space_id = 3;
 }
 
 // ConnectionUpdateSource is to determine whether the connection update was issued 
@@ -52,8 +54,18 @@ enum ConnectionUpdateSource {
     CONNECTION_UPDATE_SOURCE_HEURISTIC = 3;
 }
 
+message AgentConfig {
+    string dashboards = 1;
+    string alert_notifications = 2;
+}
+
+message CloudConfig {
+    string dashboards = 1;
+    string alert_notifications = 2;
+}
+
 message Config {
-    bool bearer_protection = 1;
-    bool cloud_only_notifications = 2;
-    bool universal_dashboards = 3;
+    reserved 1 to 3;
+    AgentConfig agent_config = 4;
+    CloudConfig cloud_config = 5;
 }
