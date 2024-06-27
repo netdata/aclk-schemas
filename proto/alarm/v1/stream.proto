@@ -38,11 +38,13 @@ message StartAlarmStreaming {
     uint64 start_sequnce_id = 3 [deprecated=true];
     // Instructs the agent to sync all configured alarms
     bool resets = 4;
+    uint64 version = 5;
 }
 
 message SendAlarmCheckpoint {
     string node_id = 1;
     string claim_id = 2;
+    uint64 version = 3;
 }
 
 message AlarmCheckpoint {
@@ -114,6 +116,7 @@ message AlarmLogEntry {
 
     // The rendered summary
     string summary = 33;
+    uint64 alert_version = 34;
 }
 
 enum AlarmStatus {
