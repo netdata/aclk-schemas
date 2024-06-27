@@ -45,7 +45,6 @@ message SendAlarmCheckpoint {
     string node_id = 1;
     string claim_id = 2;
     uint64 version = 3;
-    uint64 when_end = 4;
 }
 
 message AlarmCheckpoint {
