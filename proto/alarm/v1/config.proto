@@ -23,29 +23,29 @@ message AlarmConfiguration{
     string component = 6;
 
     string os = 7;
-    string hosts = 8;
-    string plugin = 9;
-    string module = 10;
-    string charts = 11;
+    string hosts = 8 [deprecated=true];
+    string plugin = 9 [deprecated=true];
+    string module = 10 [deprecated=true];
+    string charts = 11 [deprecated=true];
     string families = 12 [deprecated=true];
-    string lookup = 13;
+    string lookup = 13 [deprecated=true];
     string every = 14;
     string units = 15;
 
-    string green = 16;
-    string red = 17;
+    string green = 16 [deprecated=true];
+    string red = 17 [deprecated=true];
 
     string calculation_expr = 18;
     string warning_expr = 19;
     string critical_expr = 20;
 
     string recipient = 21;
-    string exec = 22;
+    string exec = 22 [deprecated=true];
     string delay = 23;
     string repeat = 24;
     string info = 25;
-    string options = 26;
-    string host_labels = 27;
+    string options = 26 [deprecated=true];
+    string host_labels = 27 [deprecated=true];
 
     //parsed values from above config values
     //indicated by p_
