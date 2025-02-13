@@ -33,6 +33,8 @@ message UpdateAgentConnection {
     google.protobuf.Duration agent_uptime = 16;
 
     repeated aclk_lib.v1.Capability capabilities = 17;
+
+    repeated aclk_lib.v1.ExitReason exit_reasons = 18;
 }
 
 message SendNodeInstances {

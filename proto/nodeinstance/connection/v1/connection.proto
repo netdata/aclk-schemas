@@ -34,4 +34,6 @@ message UpdateNodeInstanceConnection {
 
     // capabilities of node instance NOT the NODE or agent!!!
     repeated aclk_lib.v1.Capability capabilities = 10;
+
+    repeated aclk_lib.v1.ExitReason exit_reasons = 11;
 }

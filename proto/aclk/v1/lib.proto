@@ -20,3 +20,19 @@ message Capability {
   // version == 0 is equivalent to not having the capability at all
   bool enabled = 3;
 }
+
+enum ExitReason {
+  EXIT_REASON_NONE = 0;
+  EXIT_REASON_SYSTEM_SHUTDOWN = 1;
+  EXIT_REASON_SIGQUIT = 2;
+  EXIT_REASON_SIGTERM = 4;
+  EXIT_REASON_SIGINT = 8;
+  EXIT_REASON_SIGBUS = 16;
+  EXIT_REASON_SIGSEGV = 32;
+  EXIT_REASON_SIGFPE = 64;
+  EXIT_REASON_SIGILL = 128;
+  EXIT_REASON_API_QUIT = 256;
+  EXIT_REASON_CMD_EXIT = 512;
+  EXIT_REASON_FATAL = 1024;
+  EXIT_REASON_SERVICE_STOP = 2048;
+}
