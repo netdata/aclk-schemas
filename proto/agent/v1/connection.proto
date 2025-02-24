@@ -34,7 +34,25 @@ message UpdateAgentConnection {
 
     repeated aclk_lib.v1.Capability capabilities = 17;
 
-    repeated aclk_lib.v1.ExitReason exit_reasons = 18;
+    repeated AgentExitReason exit_reasons = 18;
+}
+
+enum AgentExitReason {
+    // AGENT_EXIT_REASON_NONE acts as default value
+    AGENT_EXIT_REASON_NONE = 0;
+    AGENT_EXIT_REASON_SYSTEM_SHUTDOWN = 1;
+    AGENT_EXIT_REASON_SIGQUIT = 2;
+    AGENT_EXIT_REASON_SIGTERM = 3;
+    AGENT_EXIT_REASON_SIGINT = 4;
+    AGENT_EXIT_REASON_SIGBUS = 5;
+    AGENT_EXIT_REASON_SIGSEGV = 6;
+    AGENT_EXIT_REASON_SIGFPE = 7;
+    AGENT_EXIT_REASON_SIGILL = 8;
+    AGENT_EXIT_REASON_API_QUIT = 9;
+    AGENT_EXIT_REASON_CMD_EXIT = 10;
+    AGENT_EXIT_REASON_FATAL = 11;
+    AGENT_EXIT_REASON_SERVICE_STOP = 12;
+    AGENT_EXIT_REASON_UPDATE = 13;
 }
 
 message SendNodeInstances {

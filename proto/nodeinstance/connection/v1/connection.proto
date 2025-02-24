@@ -35,5 +35,14 @@ message UpdateNodeInstanceConnection {
     // capabilities of node instance NOT the NODE or agent!!!
     repeated aclk_lib.v1.Capability capabilities = 10;
 
-    repeated aclk_lib.v1.ExitReason exit_reasons = 11;
+    NodeInstanceConnectivityReason reason = 11;
+}
+
+enum NodeInstanceConnectivityReason {
+    // NODE_INSTANCE_CONNECTIVITY_REASON_UNSPECIFIED acts as default value
+    NODE_INSTANCE_CONNECTIVITY_REASON_UNSPECIFIED = 0;
+    NODE_INSTANCE_CONNECTIVITY_REASON_ONLINE = 1;
+    NODE_INSTANCE_CONNECTIVITY_REASON_NO_RETENTION = 2;
+    NODE_INSTANCE_CONNECTIVITY_REASON_GRACEFUL = 3;
+    NODE_INSTANCE_CONNECTIVITY_REASON_UNGRACEFUL = 4;
 }
