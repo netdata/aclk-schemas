@@ -4,7 +4,7 @@ option go_package = "agent/v1;agent";
 package agent.v1;
 
 import "google/protobuf/timestamp.proto";
-import "proto/aclk/v1/lib.proto";
+// import "proto/aclk/v1/lib.proto";
 
 message CancelPendingRequest {
     // must match the ID sent with the request originally made
