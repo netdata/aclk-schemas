@@ -33,6 +33,42 @@ message UpdateAgentConnection {
     google.protobuf.Duration agent_uptime = 16;
 
     repeated aclk_lib.v1.Capability capabilities = 17;
+
+    repeated AgentExitReason exit_reasons = 18;
+}
+
+enum AgentExitReason {
+    AGENT_EXIT_REASON_NONE = 0;
+    // signals - abnormal termination
+    AGENT_EXIT_REASON_SIGBUS = 1;
+    AGENT_EXIT_REASON_SIGSEGV = 2;
+    AGENT_EXIT_REASON_SIGFPE = 3;
+    AGENT_EXIT_REASON_SIGILL = 4;
+    AGENT_EXIT_REASON_SIGABRT = 5;
+    AGENT_EXIT_REASON_SIGSYS = 6;  // Bad system call
+    AGENT_EXIT_REASON_SIGXCPU = 7;  // CPU time limit exceeded
+    AGENT_EXIT_REASON_SIGXFSZ = 8;  // File size limit exceeded
+    // signals - normal termination
+    AGENT_EXIT_REASON_SIGQUIT             = 9;     // rare, but graceful
+    AGENT_EXIT_REASON_SIGTERM             = 10;     // received on Linux, FreeBSD, MacOS
+    AGENT_EXIT_REASON_SIGINT              = 11;    // received on Windows on normal termination
+    //
+    AGENT_EXIT_REASON_OUT_OF_MEMORY       = 12;
+    AGENT_EXIT_REASON_ALREADY_RUNNING     = 13;
+    // abnormal termination via a fatal message
+    AGENT_EXIT_REASON_FATAL               = 14;
+    // normal termination via APIs
+    AGENT_EXIT_REASON_API_QUIT            = 15;     // developer only
+    AGENT_EXIT_REASON_CMD_EXIT            = 16;     // netdatacli
+    // windows specific, service stop
+    AGENT_EXIT_REASON_SERVICE_STOP        = 17;
+    // automatically detect when exit_initiated_set() is called
+    // supports Linux, FreeBSD, MacOS, Windows
+    AGENT_EXIT_REASON_SYSTEM_SHUTDOWN     = 18;
+    // netdata update
+    AGENT_EXIT_REASON_UPDATE              = 19;
+    // timeout while shutting down
+    AGENT_EXIT_REASON_SHUTDOWN_TIMEOUT    = 20;
 }
 
 message SendNodeInstances {

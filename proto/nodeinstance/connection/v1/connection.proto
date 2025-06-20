@@ -34,4 +34,13 @@ message UpdateNodeInstanceConnection {
 
     // capabilities of node instance NOT the NODE or agent!!!
     repeated aclk_lib.v1.Capability capabilities = 10;
+
+    NodeInstanceConnectivityReason reason = 11;
+}
+
+enum NodeInstanceConnectivityReason {
+    // NODE_INSTANCE_CONNECTIVITY_REASON_UNSPECIFIED acts as default value
+    NODE_INSTANCE_CONNECTIVITY_REASON_UNSPECIFIED = 0;
+    NODE_INSTANCE_CONNECTIVITY_REASON_NO_RETENTION = 1;
+    NODE_INSTANCE_CONNECTIVITY_REASON_AGENT_UPDATE = 2;
 }
