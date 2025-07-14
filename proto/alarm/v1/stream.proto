@@ -2,35 +2,7 @@ syntax = "proto3";
 
 package alarms.v1;
 
-import "google/protobuf/timestamp.proto";
-
 option go_package = "alarms/v1;alarms";
-
-message SendAlarmLogHealth {
-    string node_id = 1;
-}
-
-message AlarmLogHealth {
-    string claim_id = 1;
-    string node_id = 2;
-    bool enabled = 3;
-    AlarmLogStatus status = 4;
-    LogEntries log_entries = 5;
-}
-
-message LogEntries {
-    int64 first_sequence_id = 1;
-    google.protobuf.Timestamp first_when = 2;
-
-    int64 last_sequence_id = 3;
-    google.protobuf.Timestamp last_when = 4;
-}
-
-enum AlarmLogStatus {
-    ALARM_LOG_STATUS_UNSPECIFIED = 0;
-    ALARM_LOG_STATUS_RUNNING = 1;
-    ALARM_LOG_STATUS_IDLE = 2;
-}
 
 message StartAlarmStreaming {
     string node_id = 1;
