@@ -25,10 +25,12 @@ message StopStreamingContexts {
     // claim_id, node_id pair is used to identify the node instance
     string claim_id = 1;
     string node_id = 2;
-    
+
     StopStreamingContextsReason reason = 3;
 }
 
+// buf:lint:ignore ENUM_VALUE_PREFIX
 enum StopStreamingContextsReason {
+  // buf:lint:ignore ENUM_ZERO_VALUE_SUFFIX
   RATE_LIMIT_EXCEEDED = 0;
 }

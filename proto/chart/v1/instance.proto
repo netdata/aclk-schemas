@@ -2,8 +2,9 @@ syntax = "proto3";
 
 package chart.v1;
 
-import "proto/aclk/v1/lib.proto";
+import "aclk/v1/lib.proto";
 
+// buf:lint:ignore PACKAGE_SAME_GO_PACKAGE
 option go_package = "chart/instance/v1;chartinstance";
 
 // ChartInstanceUpdated is a single event sent from the Agent to the Cloud containing chart instance data.
@@ -22,7 +23,9 @@ message ChartInstanceUpdated {
   aclk_lib.v1.ACLKMessagePosition position = 9;
 }
 
+// buf:lint:ignore ENUM_VALUE_PREFIX
 enum MemoryMode {
+  // buf:lint:ignore ENUM_ZERO_VALUE_SUFFIX
   NONE = 0;
   RAM = 1;
   MAP = 2;
