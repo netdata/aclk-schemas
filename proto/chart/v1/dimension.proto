@@ -4,8 +4,9 @@ package chart.v1;
 
 import "google/protobuf/timestamp.proto";
 
-import "proto/aclk/v1/lib.proto";
+import "aclk/v1/lib.proto";
 
+// buf:lint:ignore PACKAGE_SAME_GO_PACKAGE
 option go_package = "chart/dimension/v1;chartdimension";
 
 // ChartDimensionUpdated is a single event sent from the Agent to the Cloud containing chart dimension data.

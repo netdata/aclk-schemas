@@ -1,4 +1,4 @@
 ---
 language: minimal
-install: make deps
-script: make CI
+install: make tools
+script: make lint && make breaking

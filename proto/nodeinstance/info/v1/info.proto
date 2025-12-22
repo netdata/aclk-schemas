@@ -4,7 +4,7 @@ option go_package = "node_instance/info/v1;nodeinstanceinfo";
 package nodeinstance.info.v1;
 
 import "google/protobuf/timestamp.proto";
-import "proto/aclk/v1/lib.proto";
+import "aclk/v1/lib.proto";
 
 // UpdateNodeInfo (Command)
 //
@@ -113,7 +113,7 @@ message NodeInfo {
   map<string, string> host_labels = 21;
 
   MachineLearningInfo ml_info = 22;
-  
+
   // [Obsolete] repeated string collectors = 23;
   reserved 23;
 }

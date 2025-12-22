@@ -9,6 +9,7 @@ option go_package = "context/v1;context";
 // it contains a collection of ContextUpdated messages for a specific NodeInstance.
 message ContextsUpdated {
     // contexUpdates contains the collection of context updates
+    // buf:lint:ignore FIELD_LOWER_SNAKE_CASE
     repeated ContextUpdated contextUpdates = 1;
     // claim_id, node_id pair identifies the node instance
     string claim_id = 2;

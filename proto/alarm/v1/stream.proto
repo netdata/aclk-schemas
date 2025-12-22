@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+// buf:lint:ignore PACKAGE_DIRECTORY_MATCH
 package alarms.v1;
 
 option go_package = "alarms/v1;alarms";
@@ -92,6 +93,7 @@ message AlarmLogEntry {
 }
 
 enum AlarmStatus {
+    // buf:lint:ignore ENUM_ZERO_VALUE_SUFFIX
     ALARM_STATUS_NULL = 0;
     ALARM_STATUS_UNKNOWN = 1;
     ALARM_STATUS_REMOVED = 2;

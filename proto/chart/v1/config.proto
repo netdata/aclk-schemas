@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package chart.v1;
 
+// buf:lint:ignore PACKAGE_SAME_GO_PACKAGE
 option go_package = "chart/config/v1;chartconfig";
 
 // UpdateChartConfigs command contains the list of missing chart configs from the cloud to agent
@@ -30,7 +31,9 @@ message ChartConfigUpdated {
   string config_hash = 10;
 }
 
+// buf:lint:ignore ENUM_VALUE_PREFIX
 enum ChartType {
+  // buf:lint:ignore ENUM_ZERO_VALUE_SUFFIX
   LINE = 0;
   AREA = 1;
   STACKED = 2;

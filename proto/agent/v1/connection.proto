@@ -5,7 +5,7 @@ package agent.v1;
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
-import "proto/aclk/v1/lib.proto";
+import "aclk/v1/lib.proto";
 
 message UpdateAgentConnection {
     string claim_id = 1;
@@ -42,13 +42,13 @@ message SendNodeInstances {
     string space_id = 3;
 }
 
-// ConnectionUpdateSource is to determine whether the connection update was issued 
+// ConnectionUpdateSource is to determine whether the connection update was issued
 enum ConnectionUpdateSource {
     // CONNECTION_UPDATE_SOURCE_UNSPECIFIED acts as default value for protobuf and is never specified
     CONNECTION_UPDATE_SOURCE_UNSPECIFIED = 0;
     // CONNECTION_UPDATE_SOURCE_AGENT A direct message from an agent
     CONNECTION_UPDATE_SOURCE_AGENT = 1;
-    // CONNECTION_UPDATE_SOURCE_LWT message delivered as the Last Will and Testiment  from MQTT broker if an agent connection with the broker is lost 
+    // CONNECTION_UPDATE_SOURCE_LWT message delivered as the Last Will and Testiment  from MQTT broker if an agent connection with the broker is lost
     CONNECTION_UPDATE_SOURCE_LWT = 2;
     // CONNECTION_UPDATE_SOURCE_HEURISTIC A cloud generated message to sanitize incorrect internal state
     CONNECTION_UPDATE_SOURCE_HEURISTIC = 3;

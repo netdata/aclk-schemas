@@ -4,9 +4,10 @@ package chart.v1;
 
 import "google/protobuf/timestamp.proto";
 
-import "proto/chart/v1/instance.proto";
-import "proto/chart/v1/dimension.proto";
+import "chart/v1/instance.proto";
+import "chart/v1/dimension.proto";
 
+// buf:lint:ignore PACKAGE_SAME_GO_PACKAGE
 option go_package = "chart/stream/v1;chartstream";
 
 // StreamChartsAndDimensions is a Command produced by the Cloud, consumed by the Agent.
@@ -50,7 +51,9 @@ message ResetChartMessages {
   ResetReason reason = 3;
 }
 
+// buf:lint:ignore ENUM_VALUE_PREFIX
 enum ResetReason {
+  // buf:lint:ignore ENUM_ZERO_VALUE_SUFFIX
   DB_EMPTY = 0;
   SEQ_ID_NOT_EXISTS = 1;
   TIMESTAMP_MISMATCH = 2;

@@ -1,10 +1,11 @@
 syntax = "proto3";
 option go_package = "nodeinstance/connection/v1;nodeinstanceconnection";
 
+// buf:lint:ignore PACKAGE_DIRECTORY_MATCH
 package nodeinstance.v1;
 
 import "google/protobuf/timestamp.proto";
-import "proto/aclk/v1/lib.proto";
+import "aclk/v1/lib.proto";
 
 message UpdateNodeInstanceConnection {
     string claim_id = 1;
