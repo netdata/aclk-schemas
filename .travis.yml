@@ -1,4 +1,0 @@
----
-language: minimal
-install: make tools
-script: make lint && make breaking
