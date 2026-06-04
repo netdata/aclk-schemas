@@ -1,0 +1,42 @@
+syntax = "proto3";
+option go_package = "node_instance/manifest/v1;nodeinstancemanifest";
+
+package nodeinstance.manifest.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message UpdateNodeInstanceManifest {
+  string claim_id = 1;
+  string node_id  = 2;
+  google.protobuf.Timestamp updated_at = 3;
+
+  oneof payload {
+    Functions functions = 10;
+  }
+}
+
+message Functions { repeated Function items = 1; }
+
+message Function {
+  string name     = 1;
+  string help     = 2;
+  string tags     = 3;
+  uint32 priority = 4;
+  uint32 version  = 5;
+  repeated HttpAccess access = 6;
+}
+
+enum HttpAccess {
+  HTTP_ACCESS_UNSPECIFIED = 0;
+  HTTP_ACCESS_SIGNED_IN = 1;
+  HTTP_ACCESS_SAME_SPACE = 2;
+  HTTP_ACCESS_COMMERCIAL = 3;
+  HTTP_ACCESS_ANONYMOUS_DATA = 4;
+  HTTP_ACCESS_SENSITIVE_DATA = 5;
+  HTTP_ACCESS_VIEW_CONFIG = 6;
+  HTTP_ACCESS_EDIT_CONFIG = 7;
+  HTTP_ACCESS_VIEW_NOTIFICATIONS_CONFIG = 8;
+  HTTP_ACCESS_EDIT_NOTIFICATIONS_CONFIG = 9;
+  HTTP_ACCESS_VIEW_ALERTS_SILENCING = 10;
+  HTTP_ACCESS_EDIT_ALERTS_SILENCING = 11;
+}
