@@ -18,11 +18,11 @@ message UpdateNodeInstanceManifest {
 message Functions { repeated Function items = 1; }
 
 message Function {
-  string name     = 1;
-  string help     = 2;
-  string tags     = 3;
+  string name = 1;
+  string help = 2;
+  repeated string tags = 3;
   uint32 priority = 4;
-  uint32 version  = 5;
+  uint32 version = 5;
   repeated HttpAccess access = 6;
 }
 
